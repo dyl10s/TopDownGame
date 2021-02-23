@@ -1,6 +1,6 @@
 #include "engine/Engine.hpp"
-#include "entities/Banana.hpp"
-#include "entities/HUD.hpp"
+#include "entities/Player.hpp"
+#include "entities/Bullet.hpp"
 #include <SDL2/SDL.h>
 
 int main(int argc, char** argv){
@@ -15,22 +15,9 @@ int main(int argc, char** argv){
 	Engine engine(1024, 768);
 
 	// Make a banana and add to scene. Should update and draw.
-	Banana* b = new Banana();
-	one.addUpdateable(b);
-	one.addDrawable(b);
-	auto b_up = [b](double delta) { b->up(delta); };
-	auto b_down = [b](double delta) { b->down(delta); };
-	auto b_left = [b](double delta) { b->left(delta); };
-	auto b_right = [b](double delta) { b->right(delta); };
-	one.addKeyEvent( SDLK_w, b_up );
-	one.addKeyEvent( SDLK_a, b_left );
-	one.addKeyEvent( SDLK_d, b_right );
-	one.addKeyEvent( SDLK_s, b_down );
-
-	// Add the HUD
-	HUD* h = new HUD();
-	one.addUpdateable(h);
-	one.addDrawable(h);
+	Player* mainPlayer = new Player(&one);
+	one.addUpdateable(mainPlayer);
+	one.addDrawable(mainPlayer);
 
 	// Set the scene in the engine
 	engine.setScene(&one);

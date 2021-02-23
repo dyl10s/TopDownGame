@@ -83,8 +83,8 @@ void Engine::run(){
 		}
 
 		// Update objects
-		for(std::vector<Updateable*>::iterator it = currentScene->updateables.begin(); it != currentScene->updateables.end(); ++it){
-			(*it)->update(gameDelta);
+		for(auto i = 0; i < currentScene->updateables.size(); ++i){
+			currentScene->updateables[i]->update(gameDelta);
 		}			
 
 		SDL_SetRenderDrawColor(Engine::renderer, BGR, BGG, BGB, BGA);
