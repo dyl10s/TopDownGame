@@ -1,6 +1,6 @@
-#include "Engine.hpp"
-#include "Banana.hpp"
-#include "HUD.hpp"
+#include "engine/Engine.hpp"
+#include "entities/Banana.hpp"
+#include "entities/HUD.hpp"
 #include <SDL2/SDL.h>
 
 int main(int argc, char** argv){

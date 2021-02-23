@@ -1,5 +1,5 @@
-#include "Engine.hpp"
-#include "HUD.hpp"
+#include "engine/Engine.hpp"
+#include "entities/HUD.hpp"
 #include <SDL2/SDL_ttf.h>
 #include <random>
 

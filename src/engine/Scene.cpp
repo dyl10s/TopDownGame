@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
-#include "Interfaces.hpp"
-#include "Utility.hpp"
-#include "Scene.hpp"
+#include "engine/Interfaces.hpp"
+#include "engine/Utility.hpp"
+#include "engine/Scene.hpp"
 
 Scene::Scene(){
 

@@ -1,6 +1,6 @@
-#include "Engine.hpp"
-#include "Properties.hpp"
-#include "Scene.hpp"
+#include "engine/Engine.hpp"
+#include "engine/Properties.hpp"
+#include "engine/Scene.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 

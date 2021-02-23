@@ -1,5 +1,5 @@
-#include "Engine.hpp"
-#include "Banana.hpp"
+#include "engine/Engine.hpp"
+#include "entities/Banana.hpp"
 
 Banana::Banana(){
 	surface = IMG_Load("./assets/banana.png");

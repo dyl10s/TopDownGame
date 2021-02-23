@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include "Interfaces.hpp"
-#include "Utility.hpp"
+#include "engine/Interfaces.hpp"
+#include "engine/Utility.hpp"
 #include <random>
 
 class HUD : public DUGameObject {
