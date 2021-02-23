@@ -37,20 +37,25 @@ void Player::update(double delta){
 	//Shooting
 	if(keystate[SDL_SCANCODE_UP]){
 		createBullet(0, -shootSpeed);
-	}
-	if(keystate[SDL_SCANCODE_DOWN]){
+	}else if(keystate[SDL_SCANCODE_DOWN]){
 		createBullet(0, shootSpeed);
-	}
-	if(keystate[SDL_SCANCODE_LEFT]){
+	}else if(keystate[SDL_SCANCODE_LEFT]){
 		createBullet(-shootSpeed, 0);
-	}
-	if(keystate[SDL_SCANCODE_RIGHT]){
+	}else if(keystate[SDL_SCANCODE_RIGHT]){
 		createBullet(shootSpeed, 0);
 	}
 
 	position.setX(position.getX() + velocity.getX() * delta);
 	position.setY(position.getY() + velocity.getY() * delta);
 
+	// normalize the velocities so we cant move fast on diagonals 
+	double totalVelocity = abs(velocity.getX()) + abs(velocity.getY());
+	if(totalVelocity != 0){
+		velocity.setX((abs(velocity.getX()) / totalVelocity) * velocity.getX());
+		velocity.setY((abs(velocity.getY()) / totalVelocity) * velocity.getY());
+	}
+
+	// update the player position
 	if(position.getX() > 1024-rect->w || position.getX() < 0){
 		velocity.setX(- velocity.getX());
 	}
@@ -61,15 +66,15 @@ void Player::update(double delta){
 
 	// Slow down the player
 	if(velocity.getX() > 0) {
-		velocity.setX(velocity.getX() - friction);
+		velocity.setX(velocity.getX() - std::min(friction, abs(velocity.getX())));
 	}else if(velocity.getX() < 0){
-		velocity.setX(velocity.getX() + friction);
+		velocity.setX(velocity.getX() + std::min(friction, abs(velocity.getX())));
 	}
 
 	if(velocity.getY() > 0) {
-		velocity.setY(velocity.getY() - friction);
+		velocity.setY(velocity.getY() - std::min(friction, abs(velocity.getY())));
 	}else if(velocity.getY() < 0){
-		velocity.setY(velocity.getY() + friction);
+		velocity.setY(velocity.getY() + std::min(friction, abs(velocity.getY())));
 	}
 }
 
@@ -85,21 +90,21 @@ void Player::createBullet(int velX, int velY){
 
 void Player::left(double delta){
 	if(velocity.getX() > -maxSpeed){
-		velocity.setX(velocity.getX() - acceleration);
+		velocity.setX(std::max(velocity.getX() - acceleration, -maxSpeed));
 	}
 }
 void Player::right(double delta){
 	if(velocity.getX() < maxSpeed){
-		velocity.setX(velocity.getX() + acceleration);
+		velocity.setX(std::min(velocity.getX() + acceleration, maxSpeed));
 	}
 }
 void Player::up(double delta){
 	if(velocity.getY() > -maxSpeed ){
-		velocity.setY(velocity.getY() - acceleration);
+		velocity.setY(std::max(velocity.getY() - acceleration, -maxSpeed));
 	}
 }
 void Player::down(double delta){
 	if(velocity.getY() < maxSpeed ){
-		velocity.setY(velocity.getY() + acceleration);
+		velocity.setY(std::min(velocity.getY() + acceleration, maxSpeed));
 	}
 }

@@ -19,10 +19,10 @@ class Player : public Sprite {
 	private:
 		void createBullet(int xVel, int yVel);
 		Vector3 velocity;
-		int maxSpeed = 200;
-		int acceleration = 200;
-		int friction = 100;
-		int shootSpeed = 500;
+		double maxSpeed = 200;
+		double acceleration = 200;
+		double friction = 100;
+		double shootSpeed = 500;
 		double fireRate = .3;
 		double timeSinceShot = 0;
 		Scene* currentScene;
