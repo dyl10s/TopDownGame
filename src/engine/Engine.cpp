@@ -119,6 +119,13 @@ void Engine::run(){
 		}
 		currentScene->removedObjects.clear();
 
+		// create any new game objects
+		for(std::vector<DUGameObject*>::iterator it = currentScene->createdObjects.begin(); it != currentScene->createdObjects.end(); ++it){
+			currentScene->updateables.push_back((*it));
+			currentScene->drawables.push_back((*it));
+		}
+		currentScene->createdObjects.clear();
+
 		framecount++;
 	}
 }

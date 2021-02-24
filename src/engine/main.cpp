@@ -1,6 +1,7 @@
 #include "engine/Engine.hpp"
 #include "entities/Player.hpp"
 #include "entities/Bullet.hpp"
+#include "entities/Spawner.hpp"
 #include <SDL2/SDL.h>
 
 int main(int argc, char** argv){
@@ -18,6 +19,10 @@ int main(int argc, char** argv){
 	Player* mainPlayer = new Player(&one);
 	one.addUpdateable(mainPlayer);
 	one.addDrawable(mainPlayer);
+
+	Spawner* mainSpawner = new Spawner(&one);
+	one.addUpdateable(mainSpawner);
+	one.addDrawable(mainSpawner);
 
 	// Set the scene in the engine
 	engine.setScene(&one);

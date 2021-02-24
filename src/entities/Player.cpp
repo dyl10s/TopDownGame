@@ -64,6 +64,24 @@ void Player::update(double delta){
 		velocity.setY(- velocity.getY());
 	}
 
+
+	// limit the characters movement to the screen
+	if(position.getX() < 0){
+		position.setX(0);
+	}
+
+	if(position.getY() < 0){
+		position.setY(0);
+	}
+
+	if(position.getX() + 32 > 1024){
+		position.setX(1024 - 32);
+	}
+
+	if(position.getY() + 40 > 768){
+		position.setY(768 - 40);
+	}
+
 	// Slow down the player
 	if(velocity.getX() > 0) {
 		velocity.setX(velocity.getX() - std::min(friction, abs(velocity.getX())));
