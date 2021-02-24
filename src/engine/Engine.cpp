@@ -3,6 +3,7 @@
 #include "engine/Scene.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <algorithm>
 
 // For linking purposes, we need to declare this static member in the cpp file.
 SDL_Renderer* Engine::renderer = nullptr;
@@ -105,6 +106,18 @@ void Engine::run(){
 			currentScene->drawables.push_back(*it);
 		}
 		currentScene->createDrawables.clear();
+
+		// destroy objects
+		for(std::vector<DUGameObject*>::iterator it = currentScene->removedObjects.begin(); it != currentScene->removedObjects.end(); ++it){
+			currentScene->updateables.erase(
+				std::remove(currentScene->updateables.begin(), currentScene->updateables.end(), (*it)), currentScene->updateables.end());
+
+			currentScene->drawables.erase(
+				std::remove(currentScene->drawables.begin(), currentScene->drawables.end(), (*it)), currentScene->drawables.end());
+			
+			delete (*it);
+		}
+		currentScene->removedObjects.clear();
 
 		framecount++;
 	}

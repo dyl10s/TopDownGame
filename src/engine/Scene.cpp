@@ -31,10 +31,6 @@ void Scene::createDrawable(Drawable* obj){
 	this->createDrawables.push_back(obj);
 }
 
-void Scene::removeUpdateable(Updateable* obj){
-	this->removeUpdatables.push_back(obj);
-}
-
-void Scene::removeDrawable(Drawable* obj){
-	this->removeDrawables.push_back(obj);
+void Scene::removeObject(DUGameObject* obj){
+	this->removedObjects.push_back(obj);
 }

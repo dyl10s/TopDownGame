@@ -19,8 +19,7 @@ class Scene {
 		void createUpdateable(Updateable* obj);
 		void createDrawable(Drawable* obj);
 
-		void removeUpdateable(Updateable* obj);
-		void removeDrawable(Drawable* obj);
+		void removeObject(DUGameObject* obj);
 	private:
 		std::vector<Updateable*> updateables;
 		std::vector<Drawable*> drawables;
@@ -28,8 +27,7 @@ class Scene {
 		std::vector<Drawable*> createDrawables;
 		std::vector<Updateable*> createUpdatables;
 
-		std::vector<Drawable*> removeDrawables;
-		std::vector<Updateable*> removeUpdatables;
+		std::vector<DUGameObject*> removedObjects;
 
 		std::vector<std::pair<SDL_Keycode, Callback > > keyEvents;
 
