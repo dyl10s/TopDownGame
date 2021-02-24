@@ -82,8 +82,8 @@ void Player::createBullet(int velX, int velY){
 	// Shoot the gun
 	if(timeSinceShot > fireRate){
 		Bullet* b = new Bullet(currentScene, position.getX() + (rect->w / 2), position.getY() + (rect->h / 2), velX, velY);
-		currentScene->addUpdateable(b);
-		currentScene->addDrawable(b);	
+		currentScene->createUpdateable(b);
+		currentScene->createDrawable(b);
 		timeSinceShot = 0;
 	}
 }

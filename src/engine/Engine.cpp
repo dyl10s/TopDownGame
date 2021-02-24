@@ -83,9 +83,9 @@ void Engine::run(){
 		}
 
 		// Update objects
-		for(auto i = 0; i < currentScene->updateables.size(); ++i){
-			currentScene->updateables[i]->update(gameDelta);
-		}			
+		for(std::vector<Updateable*>::iterator it = currentScene->updateables.begin(); it != currentScene->updateables.end(); ++it){
+			(*it)->update(gameDelta);
+		}		
 
 		SDL_SetRenderDrawColor(Engine::renderer, BGR, BGG, BGB, BGA);
 		SDL_RenderClear(Engine::renderer);
@@ -94,6 +94,17 @@ void Engine::run(){
 			(*it)->draw();
 		}
 		SDL_RenderPresent(Engine::renderer);
+
+		// Add new objects
+		for(std::vector<Updateable*>::iterator it = currentScene->createUpdatables.begin(); it != currentScene->createUpdatables.end(); ++it){
+			currentScene->updateables.push_back(*it);
+		}
+		currentScene->createUpdatables.clear();
+
+		for(std::vector<Drawable*>::iterator it = currentScene->createDrawables.begin(); it != currentScene->createDrawables.end(); ++it){
+			currentScene->drawables.push_back(*it);
+		}
+		currentScene->createDrawables.clear();
 
 		framecount++;
 	}

@@ -16,9 +16,21 @@ class Scene {
 		void addDrawable(Drawable* obj);
 		void addKeyEvent(SDL_Keycode key, Callback fn);
 
+		void createUpdateable(Updateable* obj);
+		void createDrawable(Drawable* obj);
+
+		void removeUpdateable(Updateable* obj);
+		void removeDrawable(Drawable* obj);
 	private:
 		std::vector<Updateable*> updateables;
 		std::vector<Drawable*> drawables;
+
+		std::vector<Drawable*> createDrawables;
+		std::vector<Updateable*> createUpdatables;
+
+		std::vector<Drawable*> removeDrawables;
+		std::vector<Updateable*> removeUpdatables;
+
 		std::vector<std::pair<SDL_Keycode, Callback > > keyEvents;
 
 	friend class Engine;

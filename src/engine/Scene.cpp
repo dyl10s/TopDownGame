@@ -22,3 +22,19 @@ void Scene::addDrawable(Drawable* obj){
 void Scene::addKeyEvent(SDL_Keycode key, Callback fn){
 	keyEvents.push_back(std::make_pair(key, fn));	
 }
+
+void Scene::createUpdateable(Updateable* obj){
+	this->createUpdatables.push_back(obj);
+}
+
+void Scene::createDrawable(Drawable* obj){
+	this->createDrawables.push_back(obj);
+}
+
+void Scene::removeUpdateable(Updateable* obj){
+	this->removeUpdatables.push_back(obj);
+}
+
+void Scene::removeDrawable(Drawable* obj){
+	this->removeDrawables.push_back(obj);
+}
