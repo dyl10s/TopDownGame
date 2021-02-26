@@ -126,6 +126,12 @@ void Engine::run(){
 		}
 		currentScene->createdObjects.clear();
 
+		// create any new updatables
+		for(std::vector<Updateable*>::iterator it = currentScene->createUpdatables.begin(); it != currentScene->createUpdatables.end(); ++it){
+			currentScene->updateables.push_back((*it));
+		}
+		currentScene->createUpdatables.clear();
+
 		framecount++;
 	}
 }

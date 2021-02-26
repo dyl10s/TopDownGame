@@ -7,10 +7,12 @@
 #include "engine/Utility.hpp"
 #include "engine/Sprite.hpp"
 #include "engine/Scene.hpp"
+#include "entities/weapons/BaseWeapon.hpp"
 
 class Player : public Sprite {
 	public:
 		Player(Scene* scene);
+		~Player();
 		void update(double delta);
 		void left(double delta);
 		void right(double delta);
@@ -22,9 +24,7 @@ class Player : public Sprite {
 		double maxSpeed = 200;
 		double acceleration = 200;
 		double friction = 100;
-		double shootSpeed = 500;
-		double fireRate = .3;
-		double timeSinceShot = 0;
+		BaseWeapon* currentWeapon;
 		Scene* currentScene;
 
 };

@@ -1,6 +1,8 @@
 #include "engine/Engine.hpp"
 #include "entities/Player.hpp"
 #include "entities/Bullet.hpp"
+#include "entities/weapons/MachineGun.hpp"
+#include "entities/weapons/MultiDirectionGun.hpp"
 #include <SDL2/SDL.h>
 
 Player::Player(Scene* scene) : Sprite("./assets/player.png", 0, 32, 40) {
@@ -8,12 +10,16 @@ Player::Player(Scene* scene) : Sprite("./assets/player.png", 0, 32, 40) {
 	velocity.setY(0);
 	velocity.setZ(0);
 	currentScene = scene;
+
+	// Give the player a basic gun
+	currentWeapon = new BaseWeapon(scene);
+}
+
+Player::~Player(){
+	delete currentWeapon;
 }
 
 void Player::update(double delta){
-
-	timeSinceShot += delta;
-
 	/* 
 		This meathod of keyboard input is much quicker and responsive then 
 		the way the engine has it implimented
@@ -34,15 +40,28 @@ void Player::update(double delta){
 		right(delta);
 	}
 
+	// Testing Keys
+	if(keystate[SDL_SCANCODE_1]){
+		// I think this causes a memory leak because we never delete the old weapon. However the engine crashes if we do
+		// change this because we are itterating over the updatables
+		currentWeapon = (BaseWeapon*)new MachineGun(currentScene);
+	}
+	if(keystate[SDL_SCANCODE_2]){
+		currentWeapon = (BaseWeapon*)new MultiDirectionGun(currentScene);
+	}
+	if(keystate[SDL_SCANCODE_0]){
+		currentWeapon = new BaseWeapon(currentScene);
+	}
+
 	//Shooting
 	if(keystate[SDL_SCANCODE_UP]){
-		createBullet(0, -shootSpeed);
+		currentWeapon->shoot(Up, position.getX() + 16, position.getY() + 20);
 	}else if(keystate[SDL_SCANCODE_DOWN]){
-		createBullet(0, shootSpeed);
+		currentWeapon->shoot(Down, position.getX() + 16, position.getY() + 20);
 	}else if(keystate[SDL_SCANCODE_LEFT]){
-		createBullet(-shootSpeed, 0);
+		currentWeapon->shoot(Left, position.getX() + 16, position.getY() + 20);
 	}else if(keystate[SDL_SCANCODE_RIGHT]){
-		createBullet(shootSpeed, 0);
+		currentWeapon->shoot(Right, position.getX() + 16, position.getY() + 20);
 	}
 
 	position.setX(position.getX() + velocity.getX() * delta);
@@ -93,16 +112,6 @@ void Player::update(double delta){
 		velocity.setY(velocity.getY() - std::min(friction, abs(velocity.getY())));
 	}else if(velocity.getY() < 0){
 		velocity.setY(velocity.getY() + std::min(friction, abs(velocity.getY())));
-	}
-}
-
-void Player::createBullet(int velX, int velY){
-	// Shoot the gun
-	if(timeSinceShot > fireRate){
-		Bullet* b = new Bullet(currentScene, position.getX() + (rect->w / 2), position.getY() + (rect->h / 2), velX, velY);
-		currentScene->createUpdateable(b);
-		currentScene->createDrawable(b);
-		timeSinceShot = 0;
 	}
 }
 
