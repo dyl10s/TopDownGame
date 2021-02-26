@@ -78,7 +78,9 @@ void Sprite::createTexture(SDL_Surface* surface){
 Sprite::~Sprite(){
 	SDL_DestroyTexture(texture);
 	SDL_FreeSurface(surface);
-	TTF_CloseFont(font);
+	if(font != NULL){
+		TTF_CloseFont(font);
+	}
 }
 
 void Sprite::update(double delta){
@@ -95,6 +97,7 @@ void Sprite::draw(){
 	dst->h = rect->h;
 
 	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
+	delete dst;
 }
 
 void Sprite::setColor(SDL_Color color){
