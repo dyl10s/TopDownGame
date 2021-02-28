@@ -13,6 +13,10 @@ Sprite::Sprite(std::string path, int layer, int width, int height){
 		exit(1);
 	}
 
+	// initialize some of our pointers to null, just to be safe
+	font = nullptr;
+	texture = nullptr;
+
 	createTexture(surface);
 }
 
@@ -33,10 +37,17 @@ Sprite::Sprite(std::string text, std::string font, int layer, int fontSize, int 
 	this->text = text;
 	
 	loadFont(font, fontSize);
+
+	surface = nullptr;
+
 	createTextSurface();
 }
 
 void Sprite::loadFont(std::string font, int fontSize){
+	// close our old font before creating a new one, so that it's not abandoned in memory
+	if(this->font != nullptr)
+          TTF_CloseFont(this->font);
+
 	this->font = TTF_OpenFont(font.c_str(), fontSize);
 	if(this->font == NULL){
 		SDL_Log("No font. %s", TTF_GetError());
@@ -44,6 +55,10 @@ void Sprite::loadFont(std::string font, int fontSize){
 }
 
 void Sprite::createTextSurface(){
+	// free our old surface before creating a new one, so that it's not abandoned in memory
+	if(surface != nullptr && surface != NULL)
+		SDL_FreeSurface(surface);
+
 	surface = TTF_RenderText_Solid(this->font, this->text.c_str(), this->color);
 	if(surface == NULL){
 		SDL_Log("Can't create text. %s", SDL_GetError());
@@ -53,6 +68,10 @@ void Sprite::createTextSurface(){
 }
 
 void Sprite::createTexture(SDL_Surface* surface){
+	// destroy our old texture before creating a new one, so that it's not abandoned in memory
+	if(texture != nullptr)
+		SDL_DestroyTexture(texture);
+
 	texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
 	if( texture == NULL ){
 		SDL_Log("-----> HAVE YOU CREATED THE ENGINE YET? <-----");
@@ -78,7 +97,10 @@ void Sprite::createTexture(SDL_Surface* surface){
 Sprite::~Sprite(){
 	SDL_DestroyTexture(texture);
 	SDL_FreeSurface(surface);
-	if(font != NULL){
+	// remove rect from memory
+  	delete rect;
+
+	if(font != nullptr && font != NULL){
 		TTF_CloseFont(font);
 	}
 }
@@ -89,15 +111,17 @@ void Sprite::update(double delta){
 }
 
 void Sprite::draw(){
-	SDL_Rect* dst = new SDL_Rect();
-	dst->x = position.getX();
-	dst->y = position.getY();
+	// we want to put our rect on the stack here, so we don't have to explictly
+	// remove it from the heap everytime we call draw
+	SDL_Rect dst;
+	dst.x = position.getX();
+	dst.y = position.getY();
 
-	dst->w = rect->w;
-	dst->h = rect->h;
+	dst.w = rect->w;
+	dst.h = rect->h;
 
-	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
-	delete dst;
+    // we can pass the address of dst to sdl_rendercopy so that it knows where to find it
+	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
 }
 
 void Sprite::setColor(SDL_Color color){
