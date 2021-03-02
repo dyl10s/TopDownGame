@@ -1,13 +1,15 @@
 #include "engine/Engine.hpp"
 #include "engine/Sprite.hpp"
 #include <SDL2/SDL_ttf.h>
+#include <box2d/box2d.h>
 
-Sprite::Sprite(std::string path, int layer, int width, int height){
+Sprite::Sprite(std::string path, int layer, int width, int height, b2Body* body){
 	surface = IMG_Load(path.c_str());
 	this->layer = layer;
 	this->width = width;
 	this->height = height;
-	
+	this->body = body;
+
 	if( surface == NULL ){
 		SDL_Log("Unable to load sprite.");
 		exit(1);
@@ -20,10 +22,12 @@ Sprite::Sprite(std::string path, int layer, int width, int height){
 	createTexture(surface);
 }
 
-Sprite::Sprite(SDL_Surface* surface, int layer, int width, int height){
+Sprite::Sprite(SDL_Surface* surface, int layer, int width, int height, b2Body* body){
 	this->layer = layer;
 	this->width = width;
 	this->height = height;
+	this->body = body;
+
 	createTexture(surface);
 }
 
@@ -147,6 +151,10 @@ void Sprite::setText(std::string text){
 
 void Sprite::setLayer(int layer){
 	this->layer = layer;
+}
+
+void Sprite::setBody(b2Body* newBody){
+	this->body = newBody;
 }
 
 void Sprite::setSize(int width, int height){
