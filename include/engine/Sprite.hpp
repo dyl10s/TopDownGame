@@ -6,6 +6,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <box2d/box2d.h>
 #include "Interfaces.hpp"
+#include <string>
 
 class Sprite : public DUGameObject {
 	public:
