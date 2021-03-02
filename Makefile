@@ -22,7 +22,7 @@ RCOMPILE_FLAGS = -D NDEBUG
 # Additional debug-specific flags
 DCOMPILE_FLAGS = -D DEBUG
 # Add additional include paths
-INCLUDES = -I $(SRC_PATH) -I ./include
+INCLUDES = -I $(SRC_PATH) -I ./include -I ./lib
 # General linker settings
 LINK_FLAGS = -lSDL2_image -lSDL2 -lSDL2_ttf -lbox2d
 # Additional release-specific linker settings
