@@ -26,6 +26,8 @@ void Player::update(double delta){
 	*/
 	auto keystate = SDL_GetKeyboardState(NULL);
 
+	velocity = Vector3(0, 0);
+
 	// Movement
 	if(keystate[SDL_SCANCODE_W]){
 		up(delta);
@@ -64,74 +66,30 @@ void Player::update(double delta){
 		currentWeapon->shoot(Right, position.getX() + 16, position.getY() + 20);
 	}
 
-	position.setX(position.getX() + velocity.getX() * delta);
-	position.setY(position.getY() + velocity.getY() * delta);
-
-	// normalize the velocities so we cant move fast on diagonals 
-	double totalVelocity = abs(velocity.getX()) + abs(velocity.getY());
-	if(totalVelocity != 0){
-		velocity.setX((abs(velocity.getX()) / totalVelocity) * velocity.getX());
-		velocity.setY((abs(velocity.getY()) / totalVelocity) * velocity.getY());
-	}
-
-	// update the player position
-	if(position.getX() > 1024-rect->w || position.getX() < 0){
-		velocity.setX(- velocity.getX());
-	}
-
-	if(position.getY() > 768-rect->h || position.getY() < 0){
-		velocity.setY(- velocity.getY());
-	}
-
-
-	// limit the characters movement to the screen
-	if(position.getX() < 0){
-		position.setX(0);
-	}
-
-	if(position.getY() < 0){
-		position.setY(0);
-	}
-
-	if(position.getX() + 32 > 1024){
-		position.setX(1024 - 32);
-	}
-
-	if(position.getY() + 40 > 768){
-		position.setY(768 - 40);
-	}
-
-	// Slow down the player
-	if(velocity.getX() > 0) {
-		velocity.setX(velocity.getX() - std::min(friction, abs(velocity.getX())));
-	}else if(velocity.getX() < 0){
-		velocity.setX(velocity.getX() + std::min(friction, abs(velocity.getX())));
-	}
-
-	if(velocity.getY() > 0) {
-		velocity.setY(velocity.getY() - std::min(friction, abs(velocity.getY())));
-	}else if(velocity.getY() < 0){
-		velocity.setY(velocity.getY() + std::min(friction, abs(velocity.getY())));
-	}
+	auto moveForce = b2Vec2(velocity.getX(), velocity.getY());
+	moveForce.Normalize();
+	auto moveSpeed = b2Vec2((velocity.getX() * abs(moveForce.x)) * delta, (velocity.getY() * abs(moveForce.y)) * delta);
+	body->ApplyLinearImpulse(moveSpeed, body->GetWorldCenter(), true);
+	body->SetLinearDamping(friction);
 }
 
 void Player::left(double delta){
 	if(velocity.getX() > -maxSpeed){
-		velocity.setX(std::max(velocity.getX() - acceleration, -maxSpeed));
+		velocity.setX(std::max(body->GetLinearVelocity().x - acceleration, -maxSpeed));
 	}
 }
 void Player::right(double delta){
 	if(velocity.getX() < maxSpeed){
-		velocity.setX(std::min(velocity.getX() + acceleration, maxSpeed));
+		velocity.setX(std::min(body->GetLinearVelocity().x + acceleration, maxSpeed));
 	}
 }
 void Player::up(double delta){
 	if(velocity.getY() > -maxSpeed ){
-		velocity.setY(std::max(velocity.getY() - acceleration, -maxSpeed));
+		velocity.setY(std::max(body->GetLinearVelocity().y - acceleration, -maxSpeed));
 	}
 }
 void Player::down(double delta){
 	if(velocity.getY() < maxSpeed ){
-		velocity.setY(std::min(velocity.getY() + acceleration, maxSpeed));
+		velocity.setY(std::min(body->GetLinearVelocity().y + acceleration, maxSpeed));
 	}
 }

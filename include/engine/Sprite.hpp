@@ -27,7 +27,6 @@ class Sprite : public DUGameObject {
 		bool operator<(Sprite sprite);
 
 	private:
-		b2Body* body = nullptr;
 		std::string text;
 		SDL_Color color;
 		TTF_Font* font = nullptr;
@@ -41,6 +40,9 @@ class Sprite : public DUGameObject {
 		void loadFont(std::string font, int fontSize);
 		void createTextSurface();
 	
+	protected:
+		b2Body* body = nullptr;
+
 	friend class Collision;
 };
 
