@@ -1,5 +1,5 @@
-#ifndef			__HPP__PLAYER__
-#define			__HPP__PLAYER__
+#ifndef			__HPP__ENEMY__
+#define			__HPP__ENEMY__
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
