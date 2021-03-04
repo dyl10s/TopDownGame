@@ -14,19 +14,27 @@
 #include <box2d/box2d.h>
 #include <vector>
 
+const float METERSTOPIXELS = 50.0;
+
+enum CollisionLayers {
+	FRIENDLY = 0x0001,
+	ENEMY = 0x0002,
+	WALL = 0x0003,
+	NOTSET = 0x0004,
+	ALL = 0xFFFF
+};
+
 class Collision: public UGameObject {
 
 	public:
 		Collision(b2Vec2 gravity);
 		~Collision();
 		void update(double delta);
-		b2Body* addObject(Sprite* object);
+		b2Body* addObject(Sprite* object, uint16 category = NOTSET, uint16 collideWith = ALL);
 
 	private:
 		b2World* world;		
 		std::vector<std::pair<Sprite*, b2Body*> > objects;
-
-	friend class Engine;	
 };
 
 #endif

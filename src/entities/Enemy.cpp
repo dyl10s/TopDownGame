@@ -3,32 +3,18 @@
 #include "entities/Bullet.hpp"
 #include <SDL2/SDL.h>
 
-Enemy::Enemy(Scene* scene, int x, int y) : Sprite("./assets/enemy.png", 0, 32, 40) {
+Enemy::Enemy(Scene* scene, int x, int y) : Sprite("./assets/enemy.png", 0, 22, 36) {
 	position.setX(x);
 	position.setY(y);
 	currentScene = scene;
+
+	auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY);
+    this->setBody(body);
 }
 
 void Enemy::update(double delta){
-
 	timeSinceShot += delta;
-
-	// limit the characters movement to the screen
-	if(position.getX() < 0){
-		position.setX(0);
-	}
-
-	if(position.getY() < 0){
-		position.setY(0);
-	}
-
-	if(position.getX() + 32 > 1024){
-		position.setX(1024 - 32);
-	}
-
-	if(position.getY() + 40 > 768){
-		position.setY(768 - 40);
-	}
+	body->SetLinearDamping(friction);
 }
 
 void Enemy::createBullet(int velX, int velY){

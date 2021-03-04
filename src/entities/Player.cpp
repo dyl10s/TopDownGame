@@ -5,7 +5,7 @@
 #include "entities/weapons/MultiDirectionGun.hpp"
 #include <SDL2/SDL.h>
 
-Player::Player(Scene* scene) : Sprite("./assets/player.png", 0, 32, 40) {
+Player::Player(Scene* scene) : Sprite("./assets/player.png", 0, 24, 34) {
 	velocity.setX(0);
 	velocity.setY(0);
 	velocity.setZ(0);
@@ -13,6 +13,8 @@ Player::Player(Scene* scene) : Sprite("./assets/player.png", 0, 32, 40) {
 
 	// Give the player a basic gun
 	currentWeapon = new BaseWeapon(scene);
+	auto body = currentScene->getCollision()->addObject(this, FRIENDLY, ENEMY);
+    this->setBody(body);
 }
 
 Player::~Player(){
@@ -57,19 +59,19 @@ void Player::update(double delta){
 
 	//Shooting
 	if(keystate[SDL_SCANCODE_UP]){
-		currentWeapon->shoot(Up, position.getX() + 16, position.getY() + 20);
+		currentWeapon->shoot(Up, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_DOWN]){
-		currentWeapon->shoot(Down, position.getX() + 16, position.getY() + 20);
+		currentWeapon->shoot(Down, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_LEFT]){
-		currentWeapon->shoot(Left, position.getX() + 16, position.getY() + 20);
+		currentWeapon->shoot(Left, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_RIGHT]){
-		currentWeapon->shoot(Right, position.getX() + 16, position.getY() + 20);
+		currentWeapon->shoot(Right, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}
 
 	auto moveForce = b2Vec2(velocity.getX(), velocity.getY());
 	moveForce.Normalize();
 	auto moveSpeed = b2Vec2((velocity.getX() * abs(moveForce.x)) * delta, (velocity.getY() * abs(moveForce.y)) * delta);
-	body->ApplyLinearImpulse(moveSpeed, body->GetWorldCenter(), true);
+	body->SetLinearVelocity(moveSpeed);
 	body->SetLinearDamping(friction);
 }
 

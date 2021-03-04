@@ -13,7 +13,7 @@ void Spawner::update(double delta){
         setText("Wave " + std::to_string(currentWave));
 
         // Spawn some enemys
-        auto enemy1 = new Enemy(currentScene, 10, 10);
+        auto enemy1 = new Enemy(currentScene, 500, 300);
         auto enemy2 = new Enemy(currentScene, 500, 600);
         auto enemy3 = new Enemy(currentScene, 1000, 400);
         auto enemy4 = new Enemy(currentScene, 100, 600);

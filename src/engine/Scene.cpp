@@ -2,9 +2,14 @@
 #include "engine/Interfaces.hpp"
 #include "engine/Utility.hpp"
 #include "engine/Scene.hpp"
+#include "engine/Collision.hpp"
 
 Scene::Scene(){
 
+}
+
+Scene::Scene(Collision* collision){
+	this->collision = collision;
 }
 
 Scene::~Scene(){
@@ -37,4 +42,8 @@ void Scene::removeObject(DUGameObject* obj){
 
 void Scene::createObject(DUGameObject* obj){
 	this->createdObjects.push_back(obj);
+}
+
+Collision* Scene::getCollision() {
+	return collision;
 }

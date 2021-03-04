@@ -6,16 +6,21 @@
 #include <utility>
 #include <functional>
 #include "Interfaces.hpp"
+#include "Collision.hpp"
 #include "Utility.hpp"
+
+// http://www.cplusplus.com/forum/general/56475/
+class Collision;
 
 class Scene {
 	public:
 		Scene();
+		Scene(Collision* collision);
 		~Scene();
 		void addUpdateable(Updateable* obj);
 		void addDrawable(Drawable* obj);
 		void addKeyEvent(SDL_Keycode key, Callback fn);
-
+		Collision* getCollision();
 		void createUpdateable(Updateable* obj);
 		void createDrawable(Drawable* obj);
 
@@ -32,7 +37,7 @@ class Scene {
 		std::vector<DUGameObject*> createdObjects;
 
 		std::vector<std::pair<SDL_Keycode, Callback > > keyEvents;
-
+		Collision* collision;
 	friend class Engine;
 };
 

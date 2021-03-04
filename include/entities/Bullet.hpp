@@ -11,6 +11,7 @@
 class Bullet : public Sprite {
 	public:
 		Bullet(Scene* scene, int x, int y, int xVel, int yVel);
+		~Bullet();
 		void update(double delta);
 	private:
         Scene* currentScene;

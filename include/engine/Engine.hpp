@@ -5,6 +5,9 @@
 #include "Scene.hpp"
 #include <SDL2/SDL.h>
 
+// http://www.cplusplus.com/forum/general/56475/
+class Scene;
+
 class Engine {
 	public:
 		Engine(int _width, int _height);

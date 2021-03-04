@@ -1,5 +1,6 @@
 #include "engine/Engine.hpp"
 #include "engine/Sprite.hpp"
+#include "engine/Properties.hpp"
 #include <SDL2/SDL_ttf.h>
 #include <box2d/box2d.h>
 
@@ -28,6 +29,10 @@ Sprite::Sprite(SDL_Surface* surface, int layer, int width, int height, b2Body* b
 	this->height = height;
 	this->body = body;
 
+	// initialize some of our pointers to null, just to be safe
+	font = nullptr;
+	texture = nullptr;
+
 	createTexture(surface);
 }
 
@@ -43,6 +48,7 @@ Sprite::Sprite(std::string text, std::string font, int layer, int fontSize, int 
 	loadFont(font, fontSize);
 
 	surface = nullptr;
+	texture = nullptr;
 
 	createTextSurface();
 }
@@ -118,14 +124,20 @@ void Sprite::draw(){
 	// we want to put our rect on the stack here, so we don't have to explictly
 	// remove it from the heap everytime we call draw
 	SDL_Rect dst;
-	dst.x = position.getX();
-	dst.y = position.getY();
+	if(body != nullptr){
+		dst.x = body->GetPosition().x * METERSTOPIXELS;
+		dst.y =  body->GetPosition().y * METERSTOPIXELS;
+		
+		dst.w = rect->w;
+		dst.h = rect->h;
 
-	dst.w = rect->w;
-	dst.h = rect->h;
+		// we can pass the address of dst to sdl_rendercopy so that it knows where to find it
+		SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
 
-    // we can pass the address of dst to sdl_rendercopy so that it knows where to find it
-	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
+		// This is for debugging the hitboxes
+		SDL_SetRenderDrawColor(Engine::getRenderer(), 1, 0, 1, 0);
+		SDL_RenderDrawRect(Engine::getRenderer(), &dst);
+	}
 }
 
 void Sprite::setColor(SDL_Color color){

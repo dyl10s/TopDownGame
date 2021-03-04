@@ -21,7 +21,7 @@ class BaseWeapon : UGameObject {
 		void update(double delta);
 		virtual void shoot(Direction dir, int x, int y);
 	protected:
-		double shootSpeed = 500;
+		double shootSpeed = 1000;
 		double fireRate = .3;
 		double timeSinceShot = 0;
 		Scene* currentScene;
