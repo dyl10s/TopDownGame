@@ -3,8 +3,10 @@
 #include "entities/Player.hpp"
 #include "entities/Bullet.hpp"
 #include "entities/Spawner.hpp"
+#include "engine/Sound.hpp"
 #include <SDL2/SDL.h>
 #include <box2d/box2d.h>
+#include <SDL2/SDL_mixer.h>
 
 int main(int argc, char** argv){
 	SDL_Log("Starting up, with following arguments:");
@@ -21,7 +23,15 @@ int main(int argc, char** argv){
 
 	// Make a player and add to scene. Should update and draw.
 	Player* mainPlayer = new Player(&one);
-	
+
+	// Initialize Sound
+	Sound* sound = new Sound();
+
+	sound->setVolume(MIX_MAX_VOLUME/2);
+
+    // Play the music
+	sound->playBGMusic("/assets/8bitBackground.wav");
+
 	one.addUpdateable(mainPlayer);
 	one.addDrawable(mainPlayer);
 	one.addUpdateable(&collision);

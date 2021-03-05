@@ -24,7 +24,7 @@ DCOMPILE_FLAGS = -D DEBUG
 # Add additional include paths
 INCLUDES = -I $(SRC_PATH) -I ./include
 # General linker settings
-LINK_FLAGS = -lSDL2_image -lSDL2 -lSDL2_ttf -lbox2d
+LINK_FLAGS = -lSDL2_image -lSDL2 -lSDL2_ttf -lbox2d -lSDL2_mixer
 # Additional release-specific linker settings
 RLINK_FLAGS =
 # Additional debug-specific linker settings
