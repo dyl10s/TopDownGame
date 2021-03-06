@@ -115,6 +115,8 @@ void Engine::run(){
 			currentScene->drawables.erase(
 				std::remove(currentScene->drawables.begin(), currentScene->drawables.end(), (*it)), currentScene->drawables.end());
 			
+			currentScene->collision->removeObject((Sprite*)(*it));
+
 			delete (*it);
 		}
 		currentScene->removedObjects.clear();

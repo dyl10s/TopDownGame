@@ -31,6 +31,7 @@ class Collision: public UGameObject {
 		~Collision();
 		void update(double delta);
 		b2Body* addObject(Sprite* object, uint16 category = NOTSET, uint16 collideWith = ALL);
+		void removeObject(Sprite* object);
 
 	private:
 		b2World* world;		

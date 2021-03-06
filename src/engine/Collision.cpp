@@ -3,6 +3,7 @@
 #include "engine/Sprite.hpp"
 #include <SDL2/SDL.h>
 #include <box2d/box2d.h>
+#include <algorithm>
 
 Collision::Collision(b2Vec2 gravity){
 	SDL_Log("Creating world...");
@@ -21,6 +22,23 @@ void Collision::update(double delta){
 		(*it).first->position.setX((position.x * METERSTOPIXELS) - ((*it).first->rect->w / 2.0));
 		(*it).first->position.setY((position.y * METERSTOPIXELS) - ((*it).first->rect->h / 2.0));
 	}
+}
+
+void Collision::removeObject(Sprite* object){
+	// I am just gonna not care about performance right here
+	// because I don't know how to do this in c++
+	std::vector<std::pair<Sprite*, b2Body*>> livingObjects;
+	for(auto it = 0; it < objects.size(); ++it){
+		auto cur = objects[it];
+		if(cur.first != object){
+			livingObjects.push_back(std::make_pair(cur.first, cur.second));
+		}else{
+			// The sprite is already going to be destroyed elsewhere
+			// just get rid of the box2d body
+			world->DestroyBody(cur.second);
+		}
+	}
+	objects = livingObjects;
 }
 
 b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith){
