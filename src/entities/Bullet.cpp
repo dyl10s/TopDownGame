@@ -1,7 +1,8 @@
 #include "entities/Bullet.hpp"
 #include "engine/Collision.hpp"
+#include "engine/AssetLoader.hpp"
 
-Bullet::Bullet(Scene* scene, int x, int y, int xVel, int yVel) : Sprite("./assets/coin.png", 0, 6, 7){
+Bullet::Bullet(Scene* scene, int x, int y, int xVel, int yVel) : Sprite(AssetLoader::tilesheet, &AssetLoader::bullet, 0, 6, 7){
     currentScene = scene;
     position.setX(x);
     position.setY(y);

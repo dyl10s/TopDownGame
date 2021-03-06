@@ -21,7 +21,8 @@ enum CollisionLayers {
 	ENEMY = 0x0002,
 	WALL = 0x0003,
 	NOTSET = 0x0004,
-	ALL = 0xFFFF
+	ALL = 0x0FFF,
+	FLOOR = 0x1000,
 };
 
 class Collision: public UGameObject {
@@ -31,6 +32,7 @@ class Collision: public UGameObject {
 		~Collision();
 		void update(double delta);
 		b2Body* addObject(Sprite* object, uint16 category = NOTSET, uint16 collideWith = ALL);
+		b2Body* addStatic(Sprite* object, uint16 category = NOTSET, uint16 collideWith = ALL);
 		void removeObject(Sprite* object);
 
 	private:

@@ -1,9 +1,10 @@
 #include "engine/Engine.hpp"
+#include "engine/AssetLoader.hpp"
 #include "entities/Enemy.hpp"
 #include "entities/Bullet.hpp"
 #include <SDL2/SDL.h>
 
-Enemy::Enemy(Scene* scene, int x, int y) : Sprite("./assets/enemy.png", 0, 22, 36) {
+Enemy::Enemy(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, &AssetLoader::basicEnemy, 0, 22, 36) {
 	position.setX(x);
 	position.setY(y);
 	currentScene = scene;

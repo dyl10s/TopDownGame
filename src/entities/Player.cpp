@@ -1,14 +1,17 @@
 #include "engine/Engine.hpp"
 #include "entities/Player.hpp"
 #include "entities/Bullet.hpp"
+#include "engine/AssetLoader.hpp"
 #include "entities/weapons/MachineGun.hpp"
 #include "entities/weapons/MultiDirectionGun.hpp"
 #include <SDL2/SDL.h>
 
-Player::Player(Scene* scene) : Sprite("./assets/player.png", 0, 24, 34) {
+Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, &AssetLoader::player, 0, 24, 34) {
 	velocity.setX(0);
 	velocity.setY(0);
 	velocity.setZ(0);
+	position.setX(100);
+	position.setY(100);
 	currentScene = scene;
 
 	// Give the player a basic gun

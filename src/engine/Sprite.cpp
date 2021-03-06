@@ -36,6 +36,20 @@ Sprite::Sprite(SDL_Surface* surface, int layer, int width, int height, b2Body* b
 	createTexture(surface);
 }
 
+Sprite::Sprite(SDL_Surface* spriteSheet, SDL_Rect* sourceRect, int layer, int width, int height, b2Body* body) {
+	this->layer = layer;
+	this->width = width;
+	this->height = height;
+	this->body = body;
+	this->sourceRect = sourceRect;
+
+	// initialize some of our pointers to null, just to be safe
+	font = nullptr;
+	texture = nullptr;
+
+	createTexture(spriteSheet);
+}
+
 Sprite::Sprite(std::string text, std::string font, int layer, int fontSize, int r, int g, int b, int a){
 	color.r = r;
 	color.g = g;
@@ -106,12 +120,17 @@ void Sprite::createTexture(SDL_Surface* surface){
 
 Sprite::~Sprite(){
 	SDL_DestroyTexture(texture);
-	SDL_FreeSurface(surface);
 	// remove rect from memory
   	delete rect;
 
 	if(font != nullptr && font != NULL){
 		TTF_CloseFont(font);
+	}
+
+	// Don't need to destroy the source rect. The AssetLoader will handle that.
+	// Also if we have a source rect then don't destroy the spritesheet
+	if(sourceRect == nullptr){
+		SDL_FreeSurface(surface);
 	}
 }
 
@@ -132,7 +151,12 @@ void Sprite::draw(){
 		dst.h = rect->h;
 
 		// we can pass the address of dst to sdl_rendercopy so that it knows where to find it
-		SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
+		if(sourceRect != nullptr){
+			SDL_RenderCopy(Engine::getRenderer(), texture, sourceRect, &dst);
+		}else{
+			SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
+		}
+		
 	}
 }
 
