@@ -67,7 +67,7 @@ b2Body* Collision::addStatic(Sprite* object, uint16 category, uint16 collideWith
 	fixture.shape = &box;
 	fixture.density = 0.3;
 	fixture.friction = 0;
-	fixture.restitution = 0;
+	fixture.restitution = .1;
 	body->CreateFixture(&fixture);
 	objects.push_back(std::make_pair(object, body));
 	return body;
@@ -78,7 +78,6 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.fixedRotation = true;
 	bodyDef.angle = 0;
-	bodyDef.bullet = true;
 	bodyDef.position.Set(object->position.getX() / METERSTOPIXELS, object->position.getY() / METERSTOPIXELS);
 
 	b2Body* body = world->CreateBody(&bodyDef);
@@ -92,8 +91,8 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	fixture.filter.maskBits = collideWith;
 	fixture.shape = &box;
 	fixture.density = 0.3;
-	fixture.friction = 0.1;
-	fixture.restitution = 0;
+	fixture.friction = 0;
+	fixture.restitution = .1;
 	body->CreateFixture(&fixture);
 	objects.push_back(std::make_pair(object, body));
 	return body;
