@@ -9,6 +9,8 @@ Enemy::Enemy(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, &Asset
 	position.setY(y);
 	currentScene = scene;
 
+	setType("Enemy");
+
 	auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY);
     this->setBody(body);
 }

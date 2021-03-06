@@ -194,6 +194,14 @@ void Sprite::setSize(int width, int height){
 	this->height = height;
 }
 
+void Sprite::setType(std::string type) {
+	this->type = type;
+}
+
+std::string Sprite::getType() {
+	return type;
+}
+
 bool Sprite::operator<(Sprite sprite){
 	if(this->layer < sprite.layer) {
 		return true;

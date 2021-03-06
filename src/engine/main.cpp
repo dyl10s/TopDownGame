@@ -9,6 +9,7 @@
 #include <box2d/box2d.h>
 #include <SDL2/SDL_mixer.h>
 #include "engine/AssetLoader.hpp"
+#include "engine/ContactListener.hpp"
 
 int main(int argc, char** argv){
 	SDL_Log("Starting up, with following arguments:");
@@ -23,6 +24,9 @@ int main(int argc, char** argv){
 	Collision collision(b2Vec2(0.0, 0.0));
 	// Create a scene
 	Scene one(&collision);
+
+	collision.getWorld()->SetContactListener(new ContactListener(&one));
+
 	// Load assets
 	auto loader = new AssetLoader("./assets/tilemap.png");
 

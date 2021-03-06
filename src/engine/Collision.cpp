@@ -1,5 +1,7 @@
 #include "engine/Collision.hpp"
 #include "engine/Interfaces.hpp"
+#include "engine/ContactListener.hpp"
+#include "engine/Scene.hpp"
 #include "engine/Sprite.hpp"
 #include <SDL2/SDL.h>
 #include <box2d/box2d.h>
@@ -22,6 +24,10 @@ void Collision::update(double delta){
 		(*it).first->position.setX((position.x * METERSTOPIXELS) - ((*it).first->rect->w / 2.0));
 		(*it).first->position.setY((position.y * METERSTOPIXELS) - ((*it).first->rect->h / 2.0));
 	}
+}
+
+b2World* Collision::getWorld() {
+	return world;
 }
 
 void Collision::removeObject(Sprite* object){
@@ -50,6 +56,7 @@ b2Body* Collision::addStatic(Sprite* object, uint16 category, uint16 collideWith
 	bodyDef.position.Set(object->position.getX() / METERSTOPIXELS, object->position.getY() / METERSTOPIXELS);
 	
 	b2Body* body = world->CreateBody(&bodyDef);
+	body->GetUserData().pointer = (uintptr_t)object;
 
 	b2PolygonShape box;
 	box.SetAsBox((object->rect->w / 2.0) / METERSTOPIXELS, (object->rect->h / 2.0) / METERSTOPIXELS);
@@ -73,9 +80,10 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	bodyDef.angle = 0;
 	bodyDef.bullet = true;
 	bodyDef.position.Set(object->position.getX() / METERSTOPIXELS, object->position.getY() / METERSTOPIXELS);
-	
-	b2Body* body = world->CreateBody(&bodyDef);
 
+	b2Body* body = world->CreateBody(&bodyDef);
+	body->GetUserData().pointer = (uintptr_t)object;
+	
 	b2PolygonShape box;
 	box.SetAsBox((object->rect->w / 2.0) / METERSTOPIXELS, (object->rect->h / 2.0) / METERSTOPIXELS);
 

@@ -9,6 +9,8 @@ Bullet::Bullet(Scene* scene, int x, int y, int xVel, int yVel) : Sprite(AssetLoa
     velocity.setX(xVel);
     velocity.setY(yVel);
     
+    setType("Bullet");
+
     auto body = currentScene->getCollision()->addObject(this, FRIENDLY, ENEMY);
     this->setBody(body);
 }

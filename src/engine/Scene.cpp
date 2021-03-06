@@ -37,6 +37,13 @@ void Scene::createDrawable(Drawable* obj){
 }
 
 void Scene::removeObject(DUGameObject* obj){
+	// Make sure the object is not already marked to delete
+	for(int i = 0; i < (int)this->removedObjects.size(); ++i){
+		if(this->removedObjects[i] == obj){
+			return;
+		}
+	}
+
 	this->removedObjects.push_back(obj);
 }
 

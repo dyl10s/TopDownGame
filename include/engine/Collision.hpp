@@ -8,6 +8,7 @@
  **/
 
 #include "Engine.hpp"
+#include "Scene.hpp"
 #include "Interfaces.hpp"
 #include "Sprite.hpp"
 #include <SDL2/SDL.h>
@@ -17,6 +18,7 @@
 const float METERSTOPIXELS = 50.0;
 
 enum CollisionLayers {
+	NONE = 0x0000,
 	FRIENDLY = 0x0001,
 	ENEMY = 0x0002,
 	WALL = 0x0003,
@@ -31,6 +33,7 @@ class Collision: public UGameObject {
 		Collision(b2Vec2 gravity);
 		~Collision();
 		void update(double delta);
+		b2World* getWorld();
 		b2Body* addObject(Sprite* object, uint16 category = NOTSET, uint16 collideWith = ALL);
 		b2Body* addStatic(Sprite* object, uint16 category = NOTSET, uint16 collideWith = ALL);
 		void removeObject(Sprite* object);

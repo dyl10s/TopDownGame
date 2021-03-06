@@ -14,6 +14,8 @@ Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, &AssetLoader::play
 	position.setY(100);
 	currentScene = scene;
 
+	setType("Player");
+
 	// Give the player a basic gun
 	currentWeapon = new BaseWeapon(scene);
 	auto body = currentScene->getCollision()->addObject(this, FRIENDLY, ENEMY);

@@ -19,6 +19,9 @@ class Sprite : public DUGameObject {
 		virtual void update(double delta);
 		void draw();	
 
+		std::string getType();
+
+		void setType(std::string type);
 		void setLayer(int layer);
 		void setText(std::string text);
 		void setFont(std::string font, int fontSize);
@@ -29,6 +32,7 @@ class Sprite : public DUGameObject {
 		bool operator<(Sprite sprite);
 
 	private:
+		std::string type = "None";
 		std::string text;
 		SDL_Color color;
 		TTF_Font* font = nullptr;
