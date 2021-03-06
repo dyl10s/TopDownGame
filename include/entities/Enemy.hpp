@@ -7,20 +7,21 @@
 #include "engine/Utility.hpp"
 #include "engine/Sprite.hpp"
 #include "engine/Scene.hpp"
+#include "entities/weapons/BaseWeapon.hpp"
 
 class Enemy : public Sprite {
 	public:
 		Enemy(Scene* scene, int x, int y);
+		~Enemy();
 		void update(double delta);
+		void takeDamage(int damage);
 	private:
-		void createBullet(int xVel, int yVel);
 		Vector3 velocity;
 		double maxSpeed = 200;
 		double acceleration = 200;
 		double friction = 100;
-		double shootSpeed = 500;
-		double fireRate = .3;
-		double timeSinceShot = 0;
+		int health = 4;
+		BaseWeapon* currentWeapon;
 		Scene* currentScene;
 
 };

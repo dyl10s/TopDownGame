@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <vector>
 #include "engine/Interfaces.hpp"
 #include "engine/Utility.hpp"
 #include "engine/Sprite.hpp"
@@ -15,6 +16,9 @@ class Spawner : public Sprite {
 	private:
         Scene* currentScene;
 		int currentWave = 0;
+		float timeSinceSpawnCheck = 0;
+		std::vector<Sprite*> waveSprites;
+		bool readyForNextWave();
 };
 
 #endif

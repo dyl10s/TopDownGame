@@ -26,6 +26,8 @@ class Scene {
 
 		void removeObject(DUGameObject* obj);
 		void createObject(DUGameObject* obj);
+
+		std::vector<Updateable*> getUpdateables();
 	private:
 		std::vector<Updateable*> updateables;
 		std::vector<Drawable*> drawables;

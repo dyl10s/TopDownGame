@@ -6,7 +6,7 @@
 
 class MultiDirectionGun : BaseWeapon {
     public:
-        MultiDirectionGun(Scene* scene);
+        MultiDirectionGun(Scene* scene, bool enemy);
         void shoot(Direction dir, int x, int y);
 };
 

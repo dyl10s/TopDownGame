@@ -54,3 +54,7 @@ void Scene::createObject(DUGameObject* obj){
 Collision* Scene::getCollision() {
 	return collision;
 }
+
+std::vector<Updateable*> Scene::getUpdateables() {
+	return updateables;
+}

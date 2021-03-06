@@ -10,12 +10,14 @@
 
 class Bullet : public Sprite {
 	public:
-		Bullet(Scene* scene, int x, int y, int xVel, int yVel);
+		Bullet(Scene* scene, int x, int y, int xVel, int yVel, int damage = 1, bool enemy = false);
 		~Bullet();
 		void update(double delta);
+		int getDamage();
 	private:
         Scene* currentScene;
 		Vector3 velocity;
+		int damage;
 };
 
 #endif

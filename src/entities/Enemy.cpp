@@ -8,24 +8,26 @@ Enemy::Enemy(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, &Asset
 	position.setX(x);
 	position.setY(y);
 	currentScene = scene;
-
+	currentWeapon = new BaseWeapon(scene, true);
 	setType("Enemy");
 
 	auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY);
     this->setBody(body);
 }
 
-void Enemy::update(double delta){
-	timeSinceShot += delta;
-	body->SetLinearDamping(friction);
+Enemy::~Enemy() {
 }
 
-void Enemy::createBullet(int velX, int velY){
-	// Shoot the gun
-	if(timeSinceShot > fireRate){
-		Bullet* b = new Bullet(currentScene, position.getX() + (rect->w / 2), position.getY() + (rect->h / 2), velX, velY);
-		currentScene->createUpdateable(b);
-		currentScene->createDrawable(b);
-		timeSinceShot = 0;
+void Enemy::update(double delta){
+	body->SetLinearDamping(friction);
+
+	if(health <= 0){
+		currentScene->removeObject(this);
 	}
+
+	currentWeapon->shoot(Left, position.getX(), position.getY());
+}
+
+void Enemy::takeDamage(int damage){
+	health -= damage;
 }

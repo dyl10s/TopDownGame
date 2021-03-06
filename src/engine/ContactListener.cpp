@@ -1,4 +1,7 @@
 #include "engine/ContactListener.hpp"
+#include "entities/Enemy.hpp"
+#include "entities/Bullet.hpp"
+#include "entities/Player.hpp"
 #include <SDL2/SDL.h>
 
 ContactListener::ContactListener(Scene* scene) {
@@ -13,7 +16,11 @@ void ContactListener::BeginContact(b2Contact* contact){
         currentScene->removeObject(item1);
 
         if(item2->getType() == "Enemy"){
-            currentScene->removeObject(item2);
+            ((Enemy*)item2)->takeDamage(((Bullet*)item1)->getDamage());
+        }
+
+        if(item2->getType() == "Player"){
+            ((Player*)item2)->takeDamage(((Bullet*)item1)->getDamage());
         }
     }
 
@@ -21,9 +28,11 @@ void ContactListener::BeginContact(b2Contact* contact){
         currentScene->removeObject(item2);
 
         if(item1->getType() == "Enemy"){
-            currentScene->removeObject(item1);
+            ((Enemy*)item1)->takeDamage(((Bullet*)item2)->getDamage());
+        }
+
+        if(item1->getType() == "Player"){
+            ((Player*)item1)->takeDamage(((Bullet*)item2)->getDamage());
         }
     }
-
-    SDL_Log("%s has collided with %s", item1->getType().c_str(), item2->getType().c_str());
 }

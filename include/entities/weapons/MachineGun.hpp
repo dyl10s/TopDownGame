@@ -6,7 +6,7 @@
 
 class MachineGun : BaseWeapon {
     public:
-        MachineGun(Scene* scene);
+        MachineGun(Scene* scene, bool enemy);
 };
 
 #endif

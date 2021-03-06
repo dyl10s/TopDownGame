@@ -17,13 +17,12 @@ Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, &AssetLoader::play
 	setType("Player");
 
 	// Give the player a basic gun
-	currentWeapon = new BaseWeapon(scene);
+	currentWeapon = new BaseWeapon(scene, false);
 	auto body = currentScene->getCollision()->addObject(this, FRIENDLY, ENEMY);
     this->setBody(body);
 }
 
 Player::~Player(){
-	delete currentWeapon;
 }
 
 void Player::update(double delta){
@@ -53,13 +52,13 @@ void Player::update(double delta){
 	if(keystate[SDL_SCANCODE_1]){
 		// I think this causes a memory leak because we never delete the old weapon. However the engine crashes if we do
 		// change this because we are itterating over the updatables
-		currentWeapon = (BaseWeapon*)new MachineGun(currentScene);
+		currentWeapon = (BaseWeapon*)new MachineGun(currentScene, false);
 	}
 	if(keystate[SDL_SCANCODE_2]){
-		currentWeapon = (BaseWeapon*)new MultiDirectionGun(currentScene);
+		currentWeapon = (BaseWeapon*)new MultiDirectionGun(currentScene, false);
 	}
 	if(keystate[SDL_SCANCODE_0]){
-		currentWeapon = new BaseWeapon(currentScene);
+		currentWeapon = new BaseWeapon(currentScene, false);
 	}
 
 	//Shooting
@@ -78,6 +77,10 @@ void Player::update(double delta){
 	auto moveSpeed = b2Vec2((velocity.getX() * abs(moveForce.x)) * delta, (velocity.getY() * abs(moveForce.y)) * delta);
 	body->SetLinearVelocity(moveSpeed);
 	body->SetLinearDamping(friction);
+
+	if(health <= 0){
+		currentScene->removeObject(this);
+	}
 }
 
 void Player::left(double delta){
@@ -99,4 +102,8 @@ void Player::down(double delta){
 	if(velocity.getY() < maxSpeed ){
 		velocity.setY(std::min(body->GetLinearVelocity().y + acceleration, maxSpeed));
 	}
+}
+
+void Player::takeDamage(int damage){
+	health -= damage;
 }

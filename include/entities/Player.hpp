@@ -18,12 +18,14 @@ class Player : public Sprite {
 		void right(double delta);
 		void up(double delta);
 		void down(double delta);
+		void takeDamage(int damage);
 	private:
 		void createBullet(int xVel, int yVel);
 		Vector3 velocity;
 		double maxSpeed = 500;
 		double acceleration = 500;
 		double friction = 100;
+		int health = 6;
 		BaseWeapon* currentWeapon;
 		Scene* currentScene;
 
