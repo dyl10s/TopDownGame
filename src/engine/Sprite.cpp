@@ -125,18 +125,14 @@ void Sprite::draw(){
 	// remove it from the heap everytime we call draw
 	SDL_Rect dst;
 	if(body != nullptr){
-		dst.x = body->GetPosition().x * METERSTOPIXELS;
-		dst.y =  body->GetPosition().y * METERSTOPIXELS;
+		dst.x = position.getX();
+		dst.y =  position.getY();
 		
 		dst.w = rect->w;
 		dst.h = rect->h;
 
 		// we can pass the address of dst to sdl_rendercopy so that it knows where to find it
 		SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
-
-		// This is for debugging the hitboxes
-		SDL_SetRenderDrawColor(Engine::getRenderer(), 1, 0, 1, 0);
-		SDL_RenderDrawRect(Engine::getRenderer(), &dst);
 	}
 }
 

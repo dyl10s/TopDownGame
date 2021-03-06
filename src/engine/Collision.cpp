@@ -18,8 +18,8 @@ void Collision::update(double delta){
 	world->Step(1.0 / 60.0, 1.0, 1.0);
 	for(auto it = objects.begin(); it != objects.end(); ++it){
 		b2Vec2 position = (*it).second->GetPosition();
-		(*it).first->position.setX(position.x / METERSTOPIXELS);
-		(*it).first->position.setY(position.y / METERSTOPIXELS);
+		(*it).first->position.setX((position.x * METERSTOPIXELS) - ((*it).first->rect->w / 2.0));
+		(*it).first->position.setY((position.y * METERSTOPIXELS) - ((*it).first->rect->h / 2.0));
 	}
 }
 
@@ -28,7 +28,8 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.fixedRotation = true;
 	bodyDef.angle = 0;
-	bodyDef.position.Set((object->position.getX() + (object->rect->w / 2.0)) / METERSTOPIXELS, (object->position.getY() + (object->rect->h / 2.0)) / METERSTOPIXELS);
+	bodyDef.bullet = true;
+	bodyDef.position.Set(object->position.getX() / METERSTOPIXELS, object->position.getY() / METERSTOPIXELS);
 	
 	b2Body* body = world->CreateBody(&bodyDef);
 
@@ -39,7 +40,7 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	fixture.filter.categoryBits = category;
 	fixture.filter.maskBits = collideWith;
 	fixture.shape = &box;
-	fixture.density = 0.0001;
+	fixture.density = 0.3;
 	fixture.friction = 0.1;
 	fixture.restitution = 0;
 	body->CreateFixture(&fixture);
