@@ -14,10 +14,10 @@ Bullet::Bullet(Scene* scene, int x, int y, int xVel, int yVel, int damage, bool 
     setType("Bullet");
 
     if(enemy){
-        auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY);
+        auto body = currentScene->getCollision()->addObject(this, ENEMYBULLET, FRIENDLY);
         this->setBody(body);
     }else{
-        auto body = currentScene->getCollision()->addObject(this, FRIENDLY, ENEMY);
+        auto body = currentScene->getCollision()->addObject(this, FRIENDLYBULLET, ENEMY);
         this->setBody(body);
     }
 }

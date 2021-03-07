@@ -23,6 +23,8 @@ enum CollisionLayers {
 	ENEMY = 0x0002,
 	WALL = 0x0003,
 	NOTSET = 0x0004,
+	FRIENDLYBULLET = 0x0005,
+	ENEMYBULLET = 0x0006,
 	ALL = 0x0FFF,
 	FLOOR = 0x1000,
 };

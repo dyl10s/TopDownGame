@@ -9,20 +9,23 @@
 #include "engine/Scene.hpp"
 #include "entities/weapons/BaseWeapon.hpp"
 
-class Enemy : public Sprite {
+class BaseEnemy : public Sprite {
 	public:
-		Enemy(Scene* scene, int x, int y);
-		~Enemy();
+		BaseEnemy(Scene* scene, int x, int y);
+		~BaseEnemy();
 		void update(double delta);
 		void takeDamage(int damage);
 	private:
+		Scene* currentScene;
+		double timeSinceAction = 0;
+		Direction moveDir = Up;
+	protected:
 		Vector3 velocity;
 		double maxSpeed = 200;
 		double acceleration = 200;
 		double friction = 100;
 		int health = 4;
-		BaseWeapon* currentWeapon;
-		Scene* currentScene;
+		BaseWeapon* currentWeapon = nullptr;
 
 };
 

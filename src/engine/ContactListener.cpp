@@ -1,5 +1,5 @@
 #include "engine/ContactListener.hpp"
-#include "entities/Enemy.hpp"
+#include "entities/enemies/BaseEnemy.hpp"
 #include "entities/Bullet.hpp"
 #include "entities/Player.hpp"
 #include <SDL2/SDL.h>
@@ -16,7 +16,7 @@ void ContactListener::BeginContact(b2Contact* contact){
         currentScene->removeObject(item1);
 
         if(item2->getType() == "Enemy"){
-            ((Enemy*)item2)->takeDamage(((Bullet*)item1)->getDamage());
+            ((BaseEnemy*)item2)->takeDamage(((Bullet*)item1)->getDamage());
         }
 
         if(item2->getType() == "Player"){
@@ -28,7 +28,7 @@ void ContactListener::BeginContact(b2Contact* contact){
         currentScene->removeObject(item2);
 
         if(item1->getType() == "Enemy"){
-            ((Enemy*)item1)->takeDamage(((Bullet*)item2)->getDamage());
+            ((BaseEnemy*)item1)->takeDamage(((Bullet*)item2)->getDamage());
         }
 
         if(item1->getType() == "Player"){

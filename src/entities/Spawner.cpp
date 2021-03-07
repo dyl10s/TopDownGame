@@ -1,5 +1,5 @@
 #include "entities/Spawner.hpp"
-#include "entities/Enemy.hpp"
+#include "entities/enemies/BaseEnemy.hpp"
 
 Spawner::Spawner(Scene* scene) : Sprite("Wave 0", "./assets/stick.ttf", 10, 30){
     currentScene = scene;
@@ -17,7 +17,8 @@ void Spawner::update(double delta){
 
             // Spawn some enemys
             for(int i = 0; i < 4; i++){
-                auto enemy = new Enemy(currentScene, rand() % 1000 + 100, rand() % 600 + 100);
+                srand(i * currentWave);
+                auto enemy = new BaseEnemy(currentScene, rand() % 1000 + 100, rand() % 600 + 100);
                 currentScene->createObject(enemy);
                 waveSprites.push_back(enemy);
             } 
@@ -26,7 +27,8 @@ void Spawner::update(double delta){
             setText("Wave " + std::to_string(currentWave));
             // Spawn some enemys
             for(int i = 0; i < 4; i++){
-                auto enemy = new Enemy(currentScene, rand() % 1000 + 100, rand() % 600 + 100);
+                srand(i * currentWave);
+                auto enemy = new BaseEnemy(currentScene, rand() % 1000 + 100, rand() % 600 + 100);
                 currentScene->createObject(enemy);
                 waveSprites.push_back(enemy);
             } 

@@ -41,8 +41,6 @@ class Sprite : public DUGameObject {
 		int layer;
 
 		// Values for scaling the sprite if we want
-		int width = -1;
-		int height = -1;
 		float animationSpeed = 1;
 		int animationFrame = 0;
 		int animationFrameCount = 1;
@@ -54,6 +52,8 @@ class Sprite : public DUGameObject {
 	
 	protected:
 		b2Body* body = nullptr;
+		int width = -1;
+		int height = -1;
 
 	friend class Collision;
 };
