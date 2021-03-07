@@ -37,7 +37,7 @@ Sprite::Sprite(SDL_Surface* surface, int layer, int width, int height, b2Body* b
 	createTexture(surface);
 }
 
-Sprite::Sprite(SDL_Surface* spriteSheet, SDL_Rect* sourceRect, int layer, int width, int height, b2Body* body) {
+Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect* sourceRect, int layer, int width, int height, b2Body* body) {
 	this->layer = layer;
 	this->width = width;
 	this->height = height;
@@ -48,7 +48,22 @@ Sprite::Sprite(SDL_Surface* spriteSheet, SDL_Rect* sourceRect, int layer, int wi
 	font = nullptr;
 	texture = nullptr;
 
-	createTexture(spriteSheet);
+	texture =  spriteSheet;
+
+	rect->x = 0;
+	rect->y = 0;
+
+	if(width == -1){
+		rect->w = surface->w;
+	}else{
+		rect->w = width;
+	}
+
+	if(height == -1){
+		rect->h = surface->h;
+	}else{
+		rect->h = height;
+	}
 }
 
 Sprite::Sprite(std::string text, std::string font, int layer, int fontSize, int r, int g, int b, int a){
@@ -120,7 +135,7 @@ void Sprite::createTexture(SDL_Surface* surface){
 }
 
 Sprite::~Sprite(){
-	SDL_DestroyTexture(texture);
+	
 	// remove rect from memory
   	delete rect;
 
@@ -132,6 +147,7 @@ Sprite::~Sprite(){
 	// Also if we have a source rect then don't destroy the spritesheet
 	if(sourceRect == nullptr){
 		SDL_FreeSurface(surface);
+		SDL_DestroyTexture(texture);
 	}
 }
 

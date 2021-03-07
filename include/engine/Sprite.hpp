@@ -13,7 +13,7 @@ class Sprite : public DUGameObject {
 		Sprite(std::string text, std::string font, int fontSize, int layer = 0, int r = 255, int g = 255, int b = 255, int a = 255);
 		Sprite(std::string path, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
 		Sprite(SDL_Surface* surface, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
-		Sprite(SDL_Surface* spriteSheet, SDL_Rect* sourceRect, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
+		Sprite(SDL_Texture* spriteSheet, SDL_Rect* sourceRect, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
         ~Sprite();
 
 		virtual void update(double delta);

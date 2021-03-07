@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include "engine/AssetLoader.hpp"
+#include "engine/Engine.hpp"
 
 SDL_Rect AssetLoader::bullet;
 SDL_Rect AssetLoader::player;
@@ -19,14 +20,16 @@ SDL_Rect AssetLoader::bottomLeftWall;
 
 SDL_Rect AssetLoader::floorTile;
 
-SDL_Surface* AssetLoader::tilesheet = nullptr;
+SDL_Texture* AssetLoader::tilesheet = nullptr;
 
 AssetLoader::AssetLoader(std::string tileSheetPath){
-    AssetLoader::tilesheet = IMG_Load(tileSheetPath.c_str());
-    if( AssetLoader::tilesheet == NULL ){
+    auto tilesheetSurface = IMG_Load(tileSheetPath.c_str());
+    if( tilesheetSurface == NULL ){
 		SDL_Log("Unable to load tilesheet.");
 		exit(1);
 	}
+
+    AssetLoader::tilesheet = SDL_CreateTextureFromSurface(Engine::getRenderer(), tilesheetSurface);
 
     // Setup the assets
     bullet = {289, 273, 6, 7};
@@ -47,5 +50,5 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
 }
 
 AssetLoader::~AssetLoader(){
-    SDL_FreeSurface(AssetLoader::tilesheet);
+    SDL_DestroyTexture(AssetLoader::tilesheet);
 }

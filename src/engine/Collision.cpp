@@ -67,7 +67,7 @@ b2Body* Collision::addStatic(Sprite* object, uint16 category, uint16 collideWith
 	fixture.shape = &box;
 	fixture.density = 0.3;
 	fixture.friction = 0;
-	fixture.restitution = .1;
+	fixture.restitution = 0;
 	body->CreateFixture(&fixture);
 	objects.push_back(std::make_pair(object, body));
 	return body;
@@ -92,7 +92,7 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	fixture.shape = &box;
 	fixture.density = 0.3;
 	fixture.friction = 0;
-	fixture.restitution = .1;
+	fixture.restitution = 0;
 	body->CreateFixture(&fixture);
 	objects.push_back(std::make_pair(object, body));
 	return body;

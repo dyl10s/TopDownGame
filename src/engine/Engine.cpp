@@ -18,7 +18,7 @@ Engine::Engine(int _width, int _height){
 	if( window == nullptr ){
 		SDL_Log("Could not create a window. %s", SDL_GetError());
 	}
-	Engine::renderer = SDL_CreateRenderer(window, -1, 0);
+	Engine::renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if( Engine::renderer == nullptr ){
 		SDL_Log("Could not create a renderer. %s", SDL_GetError());
 	}
@@ -57,7 +57,7 @@ void Engine::run(){
 
 		// delta should be atleast the target framerate before we continue
 		while(delta < frameRate) {
-			SDL_Delay(frameRate - delta);
+			SDL_Delay(1);
 			current = SDL_GetTicks();
 			delta = current - last;
 		}
