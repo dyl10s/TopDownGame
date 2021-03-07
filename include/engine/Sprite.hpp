@@ -14,6 +14,7 @@ class Sprite : public DUGameObject {
 		Sprite(std::string path, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
 		Sprite(SDL_Surface* surface, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
 		Sprite(SDL_Texture* spriteSheet, SDL_Rect* sourceRect, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
+		Sprite(SDL_Texture* spriteSheet, SDL_Rect** sourceRects, int frames, float animationSpeed = 1, int layer = 0, int width = -1, int height = -1, b2Body* body = nullptr);
         ~Sprite();
 
 		virtual void update(double delta);
@@ -36,12 +37,16 @@ class Sprite : public DUGameObject {
 		std::string text;
 		SDL_Color color;
 		TTF_Font* font = nullptr;
-		SDL_Rect* sourceRect = nullptr;
+		SDL_Rect** sourceRects = nullptr;
 		int layer;
 
 		// Values for scaling the sprite if we want
 		int width = -1;
 		int height = -1;
+		float animationSpeed = 1;
+		int animationFrame = 0;
+		int animationFrameCount = 1;
+		float lastAnimation = 0;
 
 		void createTexture(SDL_Surface* surface);
 		void loadFont(std::string font, int fontSize);

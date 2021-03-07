@@ -10,8 +10,8 @@ class AssetLoader {
 		AssetLoader(std::string tileSheet);
                 ~AssetLoader();
                 static SDL_Rect bullet;
-                static SDL_Rect player;
-                static SDL_Rect basicEnemy;
+                static SDL_Rect** player;
+                static SDL_Rect** basicEnemy;
 
                 static SDL_Rect topWall;
                 static SDL_Rect bottomWall;

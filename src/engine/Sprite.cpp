@@ -42,7 +42,10 @@ Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect* sourceRect, int layer, int wi
 	this->width = width;
 	this->height = height;
 	this->body = body;
-	this->sourceRect = sourceRect;
+	this->sourceRects = new SDL_Rect*[1] {
+		sourceRect
+	};
+	this->animationFrameCount = 0;
 
 	// initialize some of our pointers to null, just to be safe
 	font = nullptr;
@@ -61,6 +64,37 @@ Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect* sourceRect, int layer, int wi
 
 	if(height == -1){
 		rect->h = surface->h;
+	}else{
+		rect->h = height;
+	}
+}
+
+Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect** sourceRects, int frames, float animationSpeed, int layer, int width, int height, b2Body* body) {
+	this->layer = layer;
+	this->width = width;
+	this->height = height;
+	this->body = body;
+	this->sourceRects = sourceRects;
+	this->animationFrameCount = frames - 1;
+	this->animationSpeed = animationSpeed;
+
+	// initialize some of our pointers to null, just to be safe
+	font = nullptr;
+	texture = nullptr;
+
+	texture =  spriteSheet;
+
+	rect->x = 0;
+	rect->y = 0;
+
+	if(width == -1){
+		rect->w = sourceRects[0]->w;
+	}else{
+		rect->w = width;
+	}
+
+	if(height == -1){
+		rect->h = sourceRects[0]->h;
 	}else{
 		rect->h = height;
 	}
@@ -145,15 +179,22 @@ Sprite::~Sprite(){
 
 	// Don't need to destroy the source rect. The AssetLoader will handle that.
 	// Also if we have a source rect then don't destroy the spritesheet
-	if(sourceRect == nullptr){
+	if(sourceRects == nullptr){
 		SDL_FreeSurface(surface);
 		SDL_DestroyTexture(texture);
 	}
 }
 
 void Sprite::update(double delta){
-	// So we stop getting the compiler warning for now.
-	delta = delta * 1;
+	// Animation logic
+	if(animationFrameCount != 0){
+		lastAnimation += delta;
+		if(lastAnimation > animationSpeed){
+			animationFrame += 1;
+			animationFrame %= animationFrameCount;
+			lastAnimation = 0;
+		}
+	}
 }
 
 void Sprite::draw(){
@@ -168,8 +209,8 @@ void Sprite::draw(){
 		dst.h = rect->h;
 
 		// we can pass the address of dst to sdl_rendercopy so that it knows where to find it
-		if(sourceRect != nullptr){
-			SDL_RenderCopy(Engine::getRenderer(), texture, sourceRect, &dst);
+		if(sourceRects != nullptr){
+			SDL_RenderCopy(Engine::getRenderer(), texture, sourceRects[animationFrame], &dst);
 		}else{
 			SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
 		}

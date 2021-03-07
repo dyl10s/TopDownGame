@@ -4,7 +4,7 @@
 #include "entities/Bullet.hpp"
 #include <SDL2/SDL.h>
 
-Enemy::Enemy(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, &AssetLoader::basicEnemy, 0, 22, 36) {
+Enemy::Enemy(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoader::basicEnemy, 3, .2, 0, 22, 36) {
 	position.setX(x);
 	position.setY(y);
 	currentScene = scene;
@@ -19,6 +19,8 @@ Enemy::~Enemy() {
 }
 
 void Enemy::update(double delta){
+	Sprite::update(delta);
+
 	body->SetLinearDamping(friction);
 
 	if(health <= 0){

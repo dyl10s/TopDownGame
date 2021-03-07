@@ -5,8 +5,8 @@
 #include "engine/Engine.hpp"
 
 SDL_Rect AssetLoader::bullet;
-SDL_Rect AssetLoader::player;
-SDL_Rect AssetLoader::basicEnemy;
+SDL_Rect** AssetLoader::player;
+SDL_Rect** AssetLoader::basicEnemy;
 
 SDL_Rect AssetLoader::topWall;
 SDL_Rect AssetLoader::bottomWall;
@@ -33,8 +33,19 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
 
     // Setup the assets
     bullet = {289, 273, 6, 7};
-    player = {145, 205, 15, 19};
-    basicEnemy = {371, 334, 11, 18};
+
+    player = new SDL_Rect*[4] {
+        new SDL_Rect({129, 237, 15, 19}),
+        new SDL_Rect({145, 237, 15, 19}),
+        new SDL_Rect({160, 237, 15, 19}),
+        new SDL_Rect({177, 237, 15, 19})
+    };
+
+    basicEnemy = new SDL_Rect*[3] {
+        new SDL_Rect({371, 334, 11, 18}),
+        new SDL_Rect({387, 334, 11, 18}),
+        new SDL_Rect({403, 334, 11, 18})
+    };
 
     topWall = {42, 124, 12, 20};
     bottomWall = {42, 156, 12, 19};

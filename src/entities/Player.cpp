@@ -6,7 +6,7 @@
 #include "entities/weapons/MultiDirectionGun.hpp"
 #include <SDL2/SDL.h>
 
-Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, &AssetLoader::player, 0, 24, 34) {
+Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::player, 4, .2, 0, 24, 34) {
 	velocity.setX(0);
 	velocity.setY(0);
 	velocity.setZ(0);
@@ -26,6 +26,7 @@ Player::~Player(){
 }
 
 void Player::update(double delta){
+	Sprite::update(delta);
 	/* 
 		This meathod of keyboard input is much quicker and responsive then 
 		the way the engine has it implimented
