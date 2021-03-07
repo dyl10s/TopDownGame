@@ -18,7 +18,7 @@ Collision::~Collision(){
 }
 
 void Collision::update(double delta){
-	world->Step(1.0 / 60.0, 1.0, 1.0);
+	world->Step(1.0 / 59.0, 1.0, 1.0);
 	for(auto it = objects.begin(); it != objects.end(); ++it){
 		b2Vec2 position = (*it).second->GetPosition();
 		(*it).first->position.setX((position.x * METERSTOPIXELS) - ((*it).first->rect->w / 2.0));

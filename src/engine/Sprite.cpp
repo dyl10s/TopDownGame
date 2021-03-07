@@ -3,6 +3,7 @@
 #include "engine/Properties.hpp"
 #include <SDL2/SDL_ttf.h>
 #include <box2d/box2d.h>
+#include <math.h>
 
 Sprite::Sprite(std::string path, int layer, int width, int height, b2Body* body){
 	surface = IMG_Load(path.c_str());
@@ -144,8 +145,8 @@ void Sprite::draw(){
 	// remove it from the heap everytime we call draw
 	SDL_Rect dst;
 	if(body != nullptr){
-		dst.x = position.getX();
-		dst.y =  position.getY();
+		dst.x = floor(position.getX());
+		dst.y =  floor(position.getY());
 		
 		dst.w = rect->w;
 		dst.h = rect->h;
