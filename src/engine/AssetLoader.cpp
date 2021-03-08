@@ -4,7 +4,8 @@
 #include "engine/AssetLoader.hpp"
 #include "engine/Engine.hpp"
 
-SDL_Rect AssetLoader::bullet;
+SDL_Rect** AssetLoader::enemyBullet;
+SDL_Rect** AssetLoader::friendlyBullet;
 SDL_Rect** AssetLoader::player;
 
 // Enemies
@@ -24,6 +25,8 @@ SDL_Rect AssetLoader::bottomLeftWall;
 
 SDL_Rect AssetLoader::floorTile;
 
+SDL_Rect** AssetLoader::hearts;
+
 SDL_Texture* AssetLoader::tilesheet = nullptr;
 
 AssetLoader::AssetLoader(std::string tileSheetPath){
@@ -36,7 +39,19 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
     AssetLoader::tilesheet = SDL_CreateTextureFromSurface(Engine::getRenderer(), tilesheetSurface);
 
     // Setup the assets
-    bullet = {289, 273, 6, 7};
+    enemyBullet = new SDL_Rect*[4] {
+        new SDL_Rect({372, 399, 6, 6}),
+        new SDL_Rect({379, 399, 6, 6}),
+        new SDL_Rect({386, 399, 6, 6}),
+        new SDL_Rect({393, 399, 6, 6})
+    };
+
+    friendlyBullet = new SDL_Rect*[4] {
+        new SDL_Rect({372, 406, 6, 6}),
+        new SDL_Rect({379, 406, 6, 6}),
+        new SDL_Rect({386, 406, 6, 6}),
+        new SDL_Rect({393, 406, 6, 6})
+    };
 
     player = new SDL_Rect*[4] {
         new SDL_Rect({129, 237, 15, 19}),
@@ -69,6 +84,12 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
     bottomRightWall = {54, 156, 10, 20};
     topRightWall = {54, 124, 10, 20};
     bottomLeftWall = {32, 156, 10, 19};
+
+    hearts = new SDL_Rect*[3] {
+        new SDL_Rect({289, 258, 13, 12}),
+        new SDL_Rect({305, 258, 13, 12}),
+        new SDL_Rect({321, 258, 13, 12})
+    };
 
     floorTile = {16, 64, 16, 16};
 }

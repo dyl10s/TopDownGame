@@ -20,6 +20,12 @@ Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::playe
 	currentWeapon = new BaseWeapon(scene, false);
 	auto body = currentScene->getCollision()->addObject(this, FRIENDLY, ENEMY);
     this->setBody(body);
+
+	heartIcons = new Sprite*[maxHealth % 2];
+	for(int i = 0; i < maxHealth / 2; i++){
+		heartIcons[i] = new Sprite(AssetLoader::tilesheet, AssetLoader::hearts, 3, 0, 0, 26, 20);
+		heartIcons[i]->setPosition(35 * i + 20, 20);
+	}
 }
 
 Player::~Player(){
@@ -84,6 +90,33 @@ void Player::update(double delta){
 	}
 
 	currentScene->SetPlayerLocation(position.getX(), position.getY());
+
+	// Update the HUD
+	auto allocatedHp = 0;
+	for(int i = 0; i < maxHealth / 2; i++){
+		// Set frame based on HP
+		auto hpLeftToAllocate = health - allocatedHp;
+		if(hpLeftToAllocate == 0){
+			heartIcons[i]->setAnimationFrame(2);
+		}else if(hpLeftToAllocate == 1){
+			heartIcons[i]->setAnimationFrame(1);
+			allocatedHp += 1;
+		}else{
+			heartIcons[i]->setAnimationFrame(0);
+			allocatedHp += 2;
+		}
+
+		heartIcons[i]->update(delta);
+	}
+}
+
+void Player::draw() {
+	Sprite::draw();
+
+	// Draw the HUD
+	for(int i = 0; i < maxHealth / 2; i++){
+		heartIcons[i]->draw();
+	}
 }
 
 void Player::left(double delta){

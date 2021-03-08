@@ -12,8 +12,5 @@ StaticEntity::StaticEntity(Scene* scene, SDL_Rect* sourceRect, int x, int y, int
     if(collision){
         auto body = currentScene->getCollision()->addStatic(this, ALL, ALL);
         this->setBody(body);
-    }else{
-        auto body = currentScene->getCollision()->addStatic(this, FLOOR, NONE);
-        this->setBody(body);
     }
 }

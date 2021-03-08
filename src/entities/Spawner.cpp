@@ -4,7 +4,7 @@
 
 Spawner::Spawner(Scene* scene) : Sprite("Wave 0", "./assets/stick.ttf", 10, 30){
     currentScene = scene;
-    position.setX(450);
+    position.setX(850);
     position.setY(5);
 }
 

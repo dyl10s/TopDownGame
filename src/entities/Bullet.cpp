@@ -2,7 +2,12 @@
 #include "engine/Collision.hpp"
 #include "engine/AssetLoader.hpp"
 
-Bullet::Bullet(Scene* scene, int x, int y, int xVel, int yVel, int damage, bool enemy) : Sprite(AssetLoader::tilesheet, &AssetLoader::bullet, 0, 6, 7){
+Bullet::Bullet(Scene* scene, int x, int y, int xVel, int yVel, int damage, bool enemy) : 
+    Sprite({
+        enemy ?
+        Sprite{AssetLoader::tilesheet, AssetLoader::enemyBullet, 4, .2, 0, 10, 10} :
+        Sprite{AssetLoader::tilesheet, AssetLoader::friendlyBullet, 4, .2, 0, 10, 10}
+    }) {
     currentScene = scene;
     position.setX(x);
     position.setY(y);
@@ -27,6 +32,7 @@ Bullet::~Bullet(){
 }
 
 void Bullet::update(double delta){
+    Sprite::update(delta);
     auto moveSpeed = b2Vec2(velocity.getX() * delta, velocity.getY() * delta);
 	body->SetLinearVelocity(moveSpeed);
     if(

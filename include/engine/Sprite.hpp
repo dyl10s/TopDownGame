@@ -18,7 +18,7 @@ class Sprite : public DUGameObject {
         ~Sprite();
 
 		virtual void update(double delta);
-		void draw();	
+		virtual void draw();	
 
 		std::string getType();
 
@@ -29,7 +29,9 @@ class Sprite : public DUGameObject {
 		void setColor(int r, int g, int b, int a = 255);
 		void setColor(SDL_Color color);
 		void setSize(int width, int height);
+		void setPosition(int x, int y);
 		void setBody(b2Body* newBody);
+		void setAnimationFrame(int frame);
 		bool operator<(Sprite sprite);
 
 	private:

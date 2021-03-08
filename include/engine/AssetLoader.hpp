@@ -9,7 +9,10 @@ class AssetLoader {
 	public:
 		AssetLoader(std::string tileSheet);
                 ~AssetLoader();
-                static SDL_Rect bullet;
+
+                static SDL_Rect** enemyBullet;
+                static SDL_Rect** friendlyBullet;
+
                 static SDL_Rect** player;
 
                 // Enemies
@@ -28,6 +31,8 @@ class AssetLoader {
                 static SDL_Rect bottomLeftWall;
 
                 static SDL_Rect floorTile;
+
+                static SDL_Rect** hearts;
 
                 static SDL_Texture* tilesheet;
 

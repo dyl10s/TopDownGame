@@ -187,7 +187,7 @@ Sprite::~Sprite(){
 
 void Sprite::update(double delta){
 	// Animation logic
-	if(animationFrameCount != 0){
+	if(animationFrameCount != 0 && animationSpeed > 0){
 		lastAnimation += delta;
 		if(lastAnimation > animationSpeed){
 			animationFrame += 1;
@@ -201,20 +201,17 @@ void Sprite::draw(){
 	// we want to put our rect on the stack here, so we don't have to explictly
 	// remove it from the heap everytime we call draw
 	SDL_Rect dst;
-	if(body != nullptr){
-		dst.x = floor(position.getX());
-		dst.y =  floor(position.getY());
-		
-		dst.w = rect->w;
-		dst.h = rect->h;
+	dst.x = floor(position.getX());
+	dst.y =  floor(position.getY());
+	
+	dst.w = rect->w;
+	dst.h = rect->h;
 
-		// we can pass the address of dst to sdl_rendercopy so that it knows where to find it
-		if(sourceRects != nullptr){
-			SDL_RenderCopy(Engine::getRenderer(), texture, sourceRects[animationFrame], &dst);
-		}else{
-			SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
-		}
-		
+	// we can pass the address of dst to sdl_rendercopy so that it knows where to find it
+	if(sourceRects != nullptr){
+		SDL_RenderCopy(Engine::getRenderer(), texture, sourceRects[animationFrame], &dst);
+	}else{
+		SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
 	}
 }
 
@@ -252,8 +249,17 @@ void Sprite::setSize(int width, int height){
 	this->height = height;
 }
 
+void Sprite::setPosition(int x, int y){
+	position.setX(x);
+	position.setY(y);
+}
+
 void Sprite::setType(std::string type) {
 	this->type = type;
+}
+
+void Sprite::setAnimationFrame(int frame) {
+	animationFrame = frame;
 }
 
 std::string Sprite::getType() {

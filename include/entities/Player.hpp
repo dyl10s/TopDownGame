@@ -13,6 +13,7 @@ class Player : public Sprite {
 	public:
 		Player(Scene* scene);
 		~Player();
+		void draw();
 		void update(double delta);
 		void left(double delta);
 		void right(double delta);
@@ -26,8 +27,10 @@ class Player : public Sprite {
 		double acceleration = 750;
 		double friction = 100;
 		int health = 6;
+		int maxHealth = 6;
 		BaseWeapon* currentWeapon;
 		Scene* currentScene;
+		Sprite** heartIcons;
 
 };
 
