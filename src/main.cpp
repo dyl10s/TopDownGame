@@ -98,12 +98,6 @@ int main(int argc, char** argv){
 	one.addUpdateable(mainSpawner);
 	one.addDrawable(mainSpawner);
 
-	// Create fade
-	auto fadeAnimation = new Sprite(AssetLoader::tilesheet, AssetLoader::fade, 8, 0, 0, 1024, 768);
-	fadeAnimation->setAnimationFrame(3);
-	one.addDrawable(fadeAnimation);
-	one.addUpdateable(fadeAnimation);
-
 	// Set the scene in the engine
 	engine.setScene(&one);
 	

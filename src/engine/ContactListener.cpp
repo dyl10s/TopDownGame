@@ -35,4 +35,10 @@ void ContactListener::BeginContact(b2Contact* contact){
             ((Player*)item1)->takeDamage(((Bullet*)item2)->getDamage());
         }
     }
+
+    if(item2->getType() == "Door"){
+        if(item1->getType() == "Player"){
+            ((Player*)item1)->setPosition(500, 500);
+        }
+    }
 }

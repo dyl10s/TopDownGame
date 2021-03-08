@@ -9,7 +9,6 @@ SDL_Rect** AssetLoader::friendlyBullet;
 SDL_Rect** AssetLoader::player;
 
 SDL_Rect** AssetLoader::door;
-SDL_Rect** AssetLoader::fade;
 
 // Enemies
 SDL_Rect** AssetLoader::basicEnemy;
@@ -64,17 +63,6 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
     door = new SDL_Rect*[2] {
         new SDL_Rect({32, 236, 32, 20}),
         new SDL_Rect({80, 236, 32, 20})
-    };
-
-    fade = new SDL_Rect*[8] {
-        new SDL_Rect({372, 414, 6, 5}),
-        new SDL_Rect({379, 414, 6, 5}),
-        new SDL_Rect({386, 414, 6, 5}),
-        new SDL_Rect({393, 414, 6, 5}),
-        new SDL_Rect({400, 414, 6, 5}),
-        new SDL_Rect({407, 414, 6, 5}),
-        new SDL_Rect({414, 414, 6, 5}),
-        new SDL_Rect({421, 414, 6, 5})
     };
 
     // Enemies
