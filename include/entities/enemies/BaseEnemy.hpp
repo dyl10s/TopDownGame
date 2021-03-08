@@ -12,14 +12,17 @@
 class BaseEnemy : public Sprite {
 	public:
 		BaseEnemy(Scene* scene, int x, int y);
+		BaseEnemy(Scene* scene, int x, int y, int w, int h, SDL_Rect** sprites);
 		~BaseEnemy();
-		void update(double delta);
-		void takeDamage(int damage);
+		virtual void update(double delta);
+		virtual void takeDamage(int damage);
 	private:
-		Scene* currentScene;
+		void setupEnemy(Scene* scene, int x, int y);
 		double timeSinceAction = 0;
 		Direction moveDir = Up;
 	protected:
+		Scene* currentScene;
+		void standardUpdate(double delta);
 		Vector3 velocity;
 		double maxSpeed = 200;
 		double acceleration = 200;

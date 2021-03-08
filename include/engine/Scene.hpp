@@ -27,7 +27,11 @@ class Scene {
 		void removeObject(DUGameObject* obj);
 		void createObject(DUGameObject* obj);
 
+		void SetPlayerLocation(double x, double y);
+		Vector2 GetPlayerLocation();
+
 		std::vector<Updateable*> getUpdateables();
+		std::vector<Drawable*> getDrawables();
 	private:
 		std::vector<Updateable*> updateables;
 		std::vector<Drawable*> drawables;
@@ -40,6 +44,8 @@ class Scene {
 
 		std::vector<std::pair<SDL_Keycode, Callback > > keyEvents;
 		Collision* collision;
+
+		Vector2 playerLocation;
 	friend class Engine;
 };
 

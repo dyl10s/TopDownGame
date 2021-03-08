@@ -11,8 +11,12 @@ class AssetLoader {
                 ~AssetLoader();
                 static SDL_Rect bullet;
                 static SDL_Rect** player;
-                static SDL_Rect** basicEnemy;
 
+                // Enemies
+                static SDL_Rect** basicEnemy;
+                static SDL_Rect** burstEnemy;
+
+                // Static
                 static SDL_Rect topWall;
                 static SDL_Rect bottomWall;
                 static SDL_Rect leftWall;

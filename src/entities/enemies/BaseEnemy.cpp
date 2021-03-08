@@ -4,10 +4,20 @@
 #include "entities/weapons/NoobEnemyGun.hpp"
 #include "entities/Bullet.hpp"
 #include <SDL2/SDL.h>
-#include <time.h>
 #include <stdlib.h>
 
+BaseEnemy::BaseEnemy(Scene* scene, int x, int y, int w, int h, SDL_Rect** sprites) : Sprite(AssetLoader::tilesheet, sprites, 3, .2, 0, w, h) {
+	setupEnemy(scene, x, y);
+}
+
 BaseEnemy::BaseEnemy(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoader::basicEnemy, 3, .2, 0, 22, 36) {
+	setupEnemy(scene, x, y);
+}
+
+BaseEnemy::~BaseEnemy() {
+}
+
+void BaseEnemy::setupEnemy(Scene* scene, int x, int y){
 	position.setX(x);
 	position.setY(y);
 	currentScene = scene;
@@ -18,17 +28,9 @@ BaseEnemy::BaseEnemy(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet
 
 	auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY | ENEMY);
     this->setBody(body);
-
-	srand(time(NULL));
 }
 
-BaseEnemy::~BaseEnemy() {
-}
-
-void BaseEnemy::update(double delta){
-
-	// Standard code for enemies
-	// ----------------------------------
+void BaseEnemy::standardUpdate(double delta){
 	Sprite::update(delta);
 
 	body->SetLinearDamping(friction);
@@ -36,7 +38,10 @@ void BaseEnemy::update(double delta){
 	if(health <= 0){
 		currentScene->removeObject(this);
 	}
-	// ----------------------------------
+}
+
+void BaseEnemy::update(double delta){
+	standardUpdate(delta);
 
 	timeSinceAction += delta;
 

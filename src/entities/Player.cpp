@@ -82,6 +82,8 @@ void Player::update(double delta){
 	if(health <= 0){
 		currentScene->removeObject(this);
 	}
+
+	currentScene->SetPlayerLocation(position.getX(), position.getY());
 }
 
 void Player::left(double delta){

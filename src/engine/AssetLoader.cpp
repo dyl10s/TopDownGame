@@ -6,8 +6,12 @@
 
 SDL_Rect AssetLoader::bullet;
 SDL_Rect** AssetLoader::player;
-SDL_Rect** AssetLoader::basicEnemy;
 
+// Enemies
+SDL_Rect** AssetLoader::basicEnemy;
+SDL_Rect** AssetLoader::burstEnemy;
+
+// Static
 SDL_Rect AssetLoader::topWall;
 SDL_Rect AssetLoader::bottomWall;
 SDL_Rect AssetLoader::leftWall;
@@ -41,12 +45,21 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
         new SDL_Rect({177, 237, 15, 19})
     };
 
+    // Enemies
     basicEnemy = new SDL_Rect*[3] {
         new SDL_Rect({371, 334, 11, 18}),
         new SDL_Rect({387, 334, 11, 18}),
         new SDL_Rect({403, 334, 11, 18})
     };
 
+    burstEnemy = new SDL_Rect*[4] {
+        new SDL_Rect({372, 38, 10, 10}),
+        new SDL_Rect({388, 38, 10, 10}),
+        new SDL_Rect({404, 38, 10, 10}),
+        new SDL_Rect({420, 38, 10, 10})
+    };
+
+    // Static
     topWall = {42, 124, 12, 20};
     bottomWall = {42, 156, 12, 19};
     leftWall = {32, 144, 5, 12};

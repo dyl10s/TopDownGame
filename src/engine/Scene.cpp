@@ -13,7 +13,6 @@ Scene::Scene(Collision* collision){
 }
 
 Scene::~Scene(){
-
 }
 
 void Scene::addUpdateable(Updateable* obj){
@@ -57,4 +56,13 @@ Collision* Scene::getCollision() {
 
 std::vector<Updateable*> Scene::getUpdateables() {
 	return updateables;
+}
+
+void Scene::SetPlayerLocation(double x, double y){
+	playerLocation.setX(x);
+	playerLocation.setY(y);
+}
+
+Vector2 Scene::GetPlayerLocation(){
+	return playerLocation;
 }

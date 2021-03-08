@@ -10,12 +10,15 @@
 #include <SDL2/SDL_mixer.h>
 #include "engine/AssetLoader.hpp"
 #include "engine/ContactListener.hpp"
+#include <time.h>
 
 int main(int argc, char** argv){
 	SDL_Log("Starting up, with following arguments:");
 	for(int i=0; i<argc; ++i){
 		SDL_Log("%d = %s", i, argv[i]);
 	}
+
+	srand(time(NULL));
 
 	// Create an engine.  Must happen early, creates the renderer.
 	Engine engine(1024, 768);
