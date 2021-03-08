@@ -30,7 +30,7 @@ void Spawner::update(double delta){
             setText("Wave " + std::to_string(currentWave));
             // Spawn some enemys
             for(int i = 0; i < 4; i++){
-                auto enemy = new BaseEnemy(currentScene, rand() % 1000 + 100, rand() % 600 + 100);
+                auto enemy = new BaseEnemy(currentScene, rand() % 900 + 100, rand() % 600 + 100);
                 currentScene->createObject(enemy);
                 waveSprites.push_back(enemy);
             } 

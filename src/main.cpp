@@ -36,7 +36,7 @@ int main(int argc, char** argv){
 	// Create the floor
 
 	for(int x = 0; x < 32; x++){
-		for(int y = 0; y < 24; y++){
+		for(int y = -1; y < 24; y++){
 			auto floor = new StaticEntity(&one, &AssetLoader::floorTile, x * 32 + 16, y * 32 + 16, 33, 33, false);
 			one.addDrawable(floor);
 		}
@@ -44,11 +44,21 @@ int main(int argc, char** argv){
 
 	// Create the walls
 	for(int i = 1; i < 31; i++){
-		auto wallTop = new StaticEntity(&one, &AssetLoader::topWall, 32 * i + (32 / 2), 54 / 2, 33, 54);
-		auto wallBottom = new StaticEntity(&one, &AssetLoader::bottomWall, 32 * i + (32 / 2), 768 - 54 / 2, 33, 54);
 
+		if(i == 15){
+			auto door = new StaticEntity(&one, AssetLoader::door, 2, 32 * i + (66 / 2), 54 / 2, 66, 54, true, "Door");
+			door->setAnimationFrame(1);
+			one.addDrawable(door);
+		}else if(i == 16){
+			// Skip
+		}else{
+			auto wallTop = new StaticEntity(&one, &AssetLoader::topWall, 32 * i + (32 / 2), 54 / 2, 33, 54);
+			one.addDrawable(wallTop);
+		}
+
+		auto wallBottom = new StaticEntity(&one, &AssetLoader::bottomWall, 32 * i + (32 / 2), 768 - 54 / 2, 33, 54);
 		one.addDrawable(wallBottom);
-		one.addDrawable(wallTop);
+		
 	}
 
 	for(int i = 1; i < 23; i++){
@@ -87,6 +97,12 @@ int main(int argc, char** argv){
 	Spawner* mainSpawner = new Spawner(&one);
 	one.addUpdateable(mainSpawner);
 	one.addDrawable(mainSpawner);
+
+	// Create fade
+	auto fadeAnimation = new Sprite(AssetLoader::tilesheet, AssetLoader::fade, 8, 0, 0, 1024, 768);
+	fadeAnimation->setAnimationFrame(3);
+	one.addDrawable(fadeAnimation);
+	one.addUpdateable(fadeAnimation);
 
 	// Set the scene in the engine
 	engine.setScene(&one);

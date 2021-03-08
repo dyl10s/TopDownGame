@@ -8,6 +8,9 @@ SDL_Rect** AssetLoader::enemyBullet;
 SDL_Rect** AssetLoader::friendlyBullet;
 SDL_Rect** AssetLoader::player;
 
+SDL_Rect** AssetLoader::door;
+SDL_Rect** AssetLoader::fade;
+
 // Enemies
 SDL_Rect** AssetLoader::basicEnemy;
 SDL_Rect** AssetLoader::burstEnemy;
@@ -30,13 +33,11 @@ SDL_Rect** AssetLoader::hearts;
 SDL_Texture* AssetLoader::tilesheet = nullptr;
 
 AssetLoader::AssetLoader(std::string tileSheetPath){
-    auto tilesheetSurface = IMG_Load(tileSheetPath.c_str());
-    if( tilesheetSurface == NULL ){
+    AssetLoader::tilesheet = IMG_LoadTexture(Engine::getRenderer(), tileSheetPath.c_str());
+    if( AssetLoader::tilesheet == NULL ){
 		SDL_Log("Unable to load tilesheet.");
 		exit(1);
 	}
-
-    AssetLoader::tilesheet = SDL_CreateTextureFromSurface(Engine::getRenderer(), tilesheetSurface);
 
     // Setup the assets
     enemyBullet = new SDL_Rect*[4] {
@@ -58,6 +59,22 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
         new SDL_Rect({145, 237, 15, 19}),
         new SDL_Rect({160, 237, 15, 19}),
         new SDL_Rect({177, 237, 15, 19})
+    };
+
+    door = new SDL_Rect*[2] {
+        new SDL_Rect({32, 236, 32, 20}),
+        new SDL_Rect({80, 236, 32, 20})
+    };
+
+    fade = new SDL_Rect*[8] {
+        new SDL_Rect({372, 414, 6, 5}),
+        new SDL_Rect({379, 414, 6, 5}),
+        new SDL_Rect({386, 414, 6, 5}),
+        new SDL_Rect({393, 414, 6, 5}),
+        new SDL_Rect({400, 414, 6, 5}),
+        new SDL_Rect({407, 414, 6, 5}),
+        new SDL_Rect({414, 414, 6, 5}),
+        new SDL_Rect({421, 414, 6, 5})
     };
 
     // Enemies

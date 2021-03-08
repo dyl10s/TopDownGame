@@ -10,7 +10,9 @@
 
 class StaticEntity : public Sprite {
 	public:
-		StaticEntity(Scene* scene, SDL_Rect* sourceRect, int x, int y, int w, int h, bool collision = true);
+		StaticEntity(Scene* scene, SDL_Rect* sourceRect, int x, int y, int w, int h, bool collision = true, std::string type = "Static");
+		StaticEntity(Scene* scene, SDL_Rect** sourceRects, int frames, int x, int y, int w, int h, bool collision = true, std::string type = "Static");
+		void setup(Scene* scene, int x, int y, int w, int h, bool collision = true, std::string type = "Static");
 	private:
 		SDL_Rect* sourceRect;
 		Scene* currentScene;

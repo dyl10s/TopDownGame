@@ -32,6 +32,7 @@ class Sprite : public DUGameObject {
 		void setPosition(int x, int y);
 		void setBody(b2Body* newBody);
 		void setAnimationFrame(int frame);
+		int getAnimationFrame();
 		bool operator<(Sprite sprite);
 
 	private:

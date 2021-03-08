@@ -13,7 +13,11 @@ class AssetLoader {
                 static SDL_Rect** enemyBullet;
                 static SDL_Rect** friendlyBullet;
 
+                static SDL_Rect** hearts;
                 static SDL_Rect** player;
+
+                static SDL_Rect** door;
+                static SDL_Rect** fade;
 
                 // Enemies
                 static SDL_Rect** basicEnemy;
@@ -31,8 +35,6 @@ class AssetLoader {
                 static SDL_Rect bottomLeftWall;
 
                 static SDL_Rect floorTile;
-
-                static SDL_Rect** hearts;
 
                 static SDL_Texture* tilesheet;
 

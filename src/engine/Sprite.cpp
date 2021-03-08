@@ -262,6 +262,10 @@ void Sprite::setAnimationFrame(int frame) {
 	animationFrame = frame;
 }
 
+int Sprite::getAnimationFrame() {
+	return animationFrame;
+}
+
 std::string Sprite::getType() {
 	return type;
 }
