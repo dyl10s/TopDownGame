@@ -38,7 +38,19 @@ void ContactListener::BeginContact(b2Contact* contact){
 
     if(item2->getType() == "Door"){
         if(item1->getType() == "Player"){
-            ((Player*)item1)->setPosition(500, 500);
+            if(item2->getAnimationFrame() == 1){
+                 ((Player*)item1)->playerHitDoor();
+                 currentScene->spawner->closeDoor();
+            }
+        }
+    }
+
+    if(item2->getType() == "Player"){
+        if(item1->getType() == "Door"){
+            if(item1->getAnimationFrame() == 1){
+                 ((Player*)item2)->playerHitDoor();
+                 currentScene->spawner->closeDoor();
+            }
         }
     }
 }

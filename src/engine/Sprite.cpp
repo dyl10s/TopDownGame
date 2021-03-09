@@ -250,8 +250,14 @@ void Sprite::setSize(int width, int height){
 }
 
 void Sprite::setPosition(int x, int y){
-	position.setX(x);
-	position.setY(y);
+	if(body != nullptr){
+		body->SetTransform(b2Vec2(x / METERSTOPIXELS,y / METERSTOPIXELS),body->GetAngle());
+		position.setX(x);
+		position.setY(y);
+	}else{
+		position.setX(x);
+		position.setY(y);
+	}
 }
 
 void Sprite::setType(std::string type) {

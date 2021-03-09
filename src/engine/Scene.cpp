@@ -58,6 +58,10 @@ std::vector<Updateable*> Scene::getUpdateables() {
 	return updateables;
 }
 
+std::vector<Drawable*> Scene::getDrawables() {
+	return drawables;
+}
+
 void Scene::SetPlayerLocation(double x, double y){
 	playerLocation.setX(x);
 	playerLocation.setY(y);

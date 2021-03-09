@@ -20,10 +20,12 @@ class Player : public Sprite {
 		void up(double delta);
 		void down(double delta);
 		void takeDamage(int damage);
+		void playerHitDoor();
 	private:
 		void createBullet(int xVel, int yVel);
 		Vector3 velocity;
 		double maxSpeed = 750;
+		bool hitDoor = false;
 		double acceleration = 750;
 		double friction = 100;
 		int health = 6;

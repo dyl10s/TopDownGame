@@ -7,8 +7,8 @@
 #include <SDL2/SDL.h>
 
 Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::player, 4, .2, 0, 24, 34) {
-	velocity.setX(0);
-	velocity.setY(0);
+	velocity.setX(500);
+	velocity.setY(700);
 	velocity.setZ(0);
 	position.setX(100);
 	position.setY(100);
@@ -32,6 +32,13 @@ Player::~Player(){
 }
 
 void Player::update(double delta){
+
+	if(hitDoor){
+		body->SetTransform(b2Vec2(500 / METERSTOPIXELS, 700 / METERSTOPIXELS), body->GetAngle());
+		hitDoor = false;
+		return;
+	}
+
 	Sprite::update(delta);
 	/* 
 		This meathod of keyboard input is much quicker and responsive then 
@@ -86,7 +93,11 @@ void Player::update(double delta){
 	body->SetLinearDamping(friction);
 
 	if(health <= 0){
-		currentScene->removeObject(this);
+		// Death Code
+		currentScene->spawner->resetGame();
+		body->SetTransform(b2Vec2(500 / METERSTOPIXELS, 700 / METERSTOPIXELS), body->GetAngle());
+		health = maxHealth;
+		return;
 	}
 
 	currentScene->SetPlayerLocation(position.getX(), position.getY());
@@ -142,4 +153,8 @@ void Player::down(double delta){
 
 void Player::takeDamage(int damage){
 	health -= damage;
+}
+
+void Player::playerHitDoor() {
+	hitDoor = true;
 }

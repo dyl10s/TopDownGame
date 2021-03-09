@@ -7,18 +7,33 @@
 #include "engine/Interfaces.hpp"
 #include "engine/Utility.hpp"
 #include "engine/Sprite.hpp"
+#include "entities/StaticEntity.hpp"
 #include "engine/Scene.hpp"
+
+class StaticEntity;
 
 class Spawner : public Sprite {
 	public:
-		Spawner(Scene* scene);
+		Spawner(Scene* scene, StaticEntity* door);
 		void update(double delta);
+		void closeDoor();
+		void resetGame();
 	private:
         Scene* currentScene;
 		int currentWave = 0;
+		StaticEntity* door = nullptr;
 		float timeSinceSpawnCheck = 0;
 		std::vector<Sprite*> waveSprites;
 		bool readyForNextWave();
+		void spawnEnemies();
+
+		enum State {
+			WaitingForDeath,
+			WaitingForDoor,
+			SpawningEnemies
+		};
+
+		State curState = WaitingForDoor;
 };
 
 #endif

@@ -8,9 +8,11 @@
 #include "Interfaces.hpp"
 #include "Collision.hpp"
 #include "Utility.hpp"
+#include "entities/Spawner.hpp"
 
 // http://www.cplusplus.com/forum/general/56475/
 class Collision;
+class Spawner;
 
 class Scene {
 	public:
@@ -32,6 +34,8 @@ class Scene {
 
 		std::vector<Updateable*> getUpdateables();
 		std::vector<Drawable*> getDrawables();
+
+		Spawner* spawner;
 	private:
 		std::vector<Updateable*> updateables;
 		std::vector<Drawable*> drawables;

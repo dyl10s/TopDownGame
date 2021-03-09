@@ -42,13 +42,15 @@ int main(int argc, char** argv){
 		}
 	}
 
+	StaticEntity* Door;
+
 	// Create the walls
 	for(int i = 1; i < 31; i++){
 
 		if(i == 15){
-			auto door = new StaticEntity(&one, AssetLoader::door, 2, 32 * i + (66 / 2), 54 / 2, 66, 54, true, "Door");
-			door->setAnimationFrame(1);
-			one.addDrawable(door);
+			Door = new StaticEntity(&one, AssetLoader::door, 2, 32 * i + (66 / 2), 54 / 2, 66, 54, true, "Door");
+			Door->setAnimationFrame(1);
+			one.addDrawable(Door);
 		}else if(i == 16){
 			// Skip
 		}else{
@@ -94,7 +96,7 @@ int main(int argc, char** argv){
 	one.addDrawable(mainPlayer);
 	one.addUpdateable(&collision);
 
-	Spawner* mainSpawner = new Spawner(&one);
+	Spawner* mainSpawner = new Spawner(&one, Door);
 	one.addUpdateable(mainSpawner);
 	one.addDrawable(mainSpawner);
 

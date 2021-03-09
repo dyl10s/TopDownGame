@@ -8,6 +8,8 @@
 #include "engine/Sprite.hpp"
 #include "engine/Scene.hpp"
 
+class Scene;
+
 class StaticEntity : public Sprite {
 	public:
 		StaticEntity(Scene* scene, SDL_Rect* sourceRect, int x, int y, int w, int h, bool collision = true, std::string type = "Static");
