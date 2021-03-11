@@ -4,6 +4,10 @@
 BaseWeapon::BaseWeapon(Scene* scene, bool enemy){
     currentScene = scene;
     this->enemy = enemy;
+
+    // Allow us to shoot the first shot right away
+    timeSinceShot = fireRate;
+
     scene->createUpdateable(this);
 }
 

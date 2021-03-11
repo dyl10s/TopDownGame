@@ -5,6 +5,7 @@
 #include "entities/weapons/MachineGun.hpp"
 #include "entities/weapons/MultiDirectionGun.hpp"
 #include "entities/weapons/TrippleShotGun.hpp"
+#include "entities/weapons/BubbleGun.hpp"
 #include <SDL2/SDL.h>
 
 Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::player, 4, .2, 0, 24, 34) {
@@ -74,6 +75,9 @@ void Player::update(double delta){
 	}
 	if(keystate[SDL_SCANCODE_3]){
 		currentWeapon = (BaseWeapon*)new TrippleShotGun(currentScene, false);
+	}
+	if(keystate[SDL_SCANCODE_4]){
+		currentWeapon = (BaseWeapon*)new BubbleGun(currentScene, false);
 	}
 	if(keystate[SDL_SCANCODE_0]){
 		currentWeapon = new BaseWeapon(currentScene, false);
