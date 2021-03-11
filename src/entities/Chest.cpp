@@ -1,6 +1,7 @@
 #include "entities/Chest.hpp"
 #include "engine/AssetLoader.hpp"
-#include "entities/items/MachineGunItem.hpp"
+#include "entities/items/WeaponItem.hpp"
+#include "entities/weapons/MachineGun.hpp"
 
 Chest::Chest(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::chest, 3, .2, 0, 16, 16) {
   currentScene = scene;
@@ -16,7 +17,7 @@ Chest::Chest(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetL
   position.setY(y);
   position.setX(x);
   currentScene = scene;
-  item = (Item*)new MachineGunItem(scene, x, y);
+  item = (Item*)new WeaponItem(scene, x, y, (BaseWeapon*)new MachineGun(currentScene, false));
   auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY | FRIENDLYBULLET);
   this->setBody(body);
 }
