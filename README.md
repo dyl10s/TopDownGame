@@ -1,11 +1,16 @@
-# leagueplusplus-2021W
+# DinoDungeon
 
-Not intended to be production code, more an academic endeavor.  
+DinoDungeon is an exciting top down game built with the game engine we're creating from scratch in CIS380. 
 
-Will be in C++ but adhere to a lot of Java style, as that is what students in this class are most used to.
+You play as an ancient dinosaur using modern weaponry to mow down all of the enemies in your way. Why? Because you can!
+
+Collect items, upgrade your weapons, survive waves of enemies, and get as far into the dungeon as you can!
 
 REQUIREMENTS
 ===
 
-SDL2 and SDL2_Image SDL2_ttf
-
+SDL2
+SDL2_Image
+SDL2_ttf
+box2d
+SDL_mixer
