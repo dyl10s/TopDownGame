@@ -3,7 +3,7 @@
 #include "entities/Bullet.hpp"
 #include "entities/Player.hpp"
 #include "entities/Chest.hpp"
-#include "entities/MachineGunItem.hpp"
+#include "entities/items/Item.hpp"
 #include <SDL2/SDL.h>
 
 ContactListener::ContactListener(Scene* scene) {
@@ -62,10 +62,10 @@ void ContactListener::BeginContact(b2Contact* contact){
     if(item1->getType() == "Player" && item2->getType() == "Chest")
             ((Chest*)item2)->spawnItem();
 
-    if(item1->getType() == "MachineGunItem" && item2->getType() == "Player")
-      ((MachineGunItem*)item1)->activate((Player*)item2);
+    if(item1->getType() == "Item" && item2->getType() == "Player")
+      ((Item*)item1)->activate((Player*)item2);
 
-    if(item1->getType() == "Player" && item2->getType() == "MachineGunItem")
-      ((MachineGunItem*)item2)->activate((Player*)item1);
+    if(item1->getType() == "Player" && item2->getType() == "Item")
+      ((Item*)item2)->activate((Player*)item1);
 }
 

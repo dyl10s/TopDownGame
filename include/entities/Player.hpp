@@ -20,6 +20,7 @@ class Player : public Sprite {
 		void up(double delta);
 		void down(double delta);
 		void takeDamage(int damage);
+		void giveHealth(int hp);
 		void playerHitDoor();
 		void setWeapon(BaseWeapon* weapon);
 	private:

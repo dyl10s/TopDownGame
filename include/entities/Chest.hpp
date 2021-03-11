@@ -5,7 +5,7 @@
 #include "engine/Scene.hpp"
 #include "engine/Interfaces.hpp"
 #include "engine/Utility.hpp"
-#include "entities/Item.hpp"
+#include "entities/items/Item.hpp"
 #include <SDL2/SDL.h>
 
 class Chest : public Sprite {

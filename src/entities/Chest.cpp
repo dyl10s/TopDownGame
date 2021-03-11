@@ -1,6 +1,6 @@
 #include "entities/Chest.hpp"
 #include "engine/AssetLoader.hpp"
-#include "entities/MachineGunItem.hpp"
+#include "entities/items/MachineGunItem.hpp"
 
 Chest::Chest(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::chest, 3, .2, 0, 16, 16) {
   currentScene = scene;

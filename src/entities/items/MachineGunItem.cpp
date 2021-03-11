@@ -1,8 +1,7 @@
-#include "entities/MachineGunItem.hpp"
+#include "entities/items/MachineGunItem.hpp"
 #include "entities/weapons/MachineGun.hpp"
 
 MachineGunItem::MachineGunItem(Scene* scene, int x, int y) : Item(scene, x, y) {
-  setType("MachineGunItem");
   position.setX(x);
   position.setY(y);
   currentScene = scene;

@@ -4,7 +4,7 @@
 #include "entities/enemies/BaseEnemy.hpp"
 #include "entities/enemies/BurstEnemy.hpp"
 #include "entities/Chest.hpp"
-#include "entities/Item.hpp"
+#include "entities/items/Item.hpp"
 
 Spawner::Spawner(Scene* scene, StaticEntity* door) : Sprite("Welcome!", "./assets/stick.ttf", 10, 30){
     currentScene = scene;

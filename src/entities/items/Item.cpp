@@ -1,4 +1,4 @@
-#include "entities/Item.hpp"
+#include "entities/items/Item.hpp"
 #include "engine/AssetLoader.hpp"
 
 Item::Item(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoader::testItem, 3, .2, 0, 10, 11) {

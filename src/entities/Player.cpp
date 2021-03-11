@@ -167,6 +167,13 @@ void Player::takeDamage(int damage){
 	health -= damage;
 }
 
+void Player::giveHealth(int hp){
+	health += hp;
+	if(health > maxHealth){
+		health = maxHealth;
+	}
+}
+
 void Player::playerHitDoor() {
 	hitDoor = true;
 }
