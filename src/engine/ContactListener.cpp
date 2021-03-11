@@ -3,8 +3,8 @@
 #include "entities/Bullet.hpp"
 #include "entities/Player.hpp"
 #include "entities/Chest.hpp"
+#include "entities/MachineGunItem.hpp"
 #include <SDL2/SDL.h>
-#include <iostream>
 
 ContactListener::ContactListener(Scene* scene) {
     currentScene = scene;
@@ -56,12 +56,16 @@ void ContactListener::BeginContact(b2Contact* contact){
         }
     }
 
-    if(item1->getType() == "Chest" && item2->getType() == "Player") {
-            std::cout << "HMMMM";
+    if(item1->getType() == "Chest" && item2->getType() == "Player")
             ((Chest*)item1)->spawnItem();
-    }
-    if(item1->getType() == "Player" && item2->getType() == "Chest") {
-            std::cout << "HMMMM";
+
+    if(item1->getType() == "Player" && item2->getType() == "Chest")
             ((Chest*)item2)->spawnItem();
-    }
+
+    if(item1->getType() == "MachineGunItem" && item2->getType() == "Player")
+      ((MachineGunItem*)item1)->activate((Player*)item2);
+
+    if(item1->getType() == "Player" && item2->getType() == "MachineGunItem")
+      ((MachineGunItem*)item2)->activate((Player*)item1);
 }
+

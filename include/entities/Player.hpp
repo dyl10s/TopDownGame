@@ -21,6 +21,7 @@ class Player : public Sprite {
 		void down(double delta);
 		void takeDamage(int damage);
 		void playerHitDoor();
+		void setWeapon(BaseWeapon* weapon);
 	private:
 		void createBullet(int xVel, int yVel);
 		Vector3 velocity;

@@ -11,9 +11,8 @@ class Item : public Sprite {
 	public:
 		Item(Scene* scene, int x, int y);
 		~Item();
-		void activate();
 		void spawn();
-	private:
+	protected:
 		Scene* currentScene;
 };
 

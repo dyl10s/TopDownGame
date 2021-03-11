@@ -33,6 +33,10 @@ Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::playe
 Player::~Player(){
 }
 
+void Player::setWeapon(BaseWeapon* weapon) {
+  currentWeapon = weapon;
+}
+
 void Player::update(double delta){
 
 	if(hitDoor){

@@ -1,5 +1,6 @@
 #include "entities/Chest.hpp"
 #include "engine/AssetLoader.hpp"
+#include "entities/MachineGunItem.hpp"
 
 Chest::Chest(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::chest, 3, .2, 0, 16, 16) {
   currentScene = scene;
@@ -9,13 +10,13 @@ Chest::Chest(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::chest, 
   this->setBody(body);
 }
 
-Chest::Chest(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoader::chest, 3, .2, 0, 32, 32) {
+Chest::Chest(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoader::chest, 3, .2, 0, 16, 16) {
   setType("Chest");
   opened = false;
   position.setY(y);
   position.setX(x);
   currentScene = scene;
-  item = new Item(scene, x, y);
+  item = (Item*)new MachineGunItem(scene, x, y);
   auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY | FRIENDLYBULLET);
   this->setBody(body);
 }
@@ -27,7 +28,8 @@ void Chest::update(double delta) {
   Sprite::update(delta);
   if(opened) {
     item->spawn();
-    currentScene->removeObject(this);
+    //setAnimationFrame(2);
+    //currentScene->removeObject(this);
     opened = false;
   }
 }

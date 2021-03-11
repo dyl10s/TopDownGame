@@ -1,7 +1,7 @@
 #include "entities/Item.hpp"
 #include "engine/AssetLoader.hpp"
 
-Item::Item(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoader::testItem, 3, .2, 0, 20, 22) {
+Item::Item(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoader::testItem, 3, .2, 0, 10, 11) {
   setType("Item");
   position.setX(x);
   position.setY(y);
@@ -9,10 +9,6 @@ Item::Item(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoa
 }
 
 Item::~Item() {
-}
-
-void Item::activate() {
-
 }
 
 void Item::spawn() {
