@@ -3,6 +3,8 @@
 #include "entities/StaticEntity.hpp"
 #include "entities/enemies/BaseEnemy.hpp"
 #include "entities/enemies/BurstEnemy.hpp"
+#include "entities/Chest.hpp"
+#include "entities/Item.hpp"
 
 Spawner::Spawner(Scene* scene, StaticEntity* door) : Sprite("Welcome!", "./assets/stick.ttf", 10, 30){
     currentScene = scene;
@@ -36,7 +38,10 @@ void Spawner::spawnEnemies() {
             currentScene->createObject(burstEnemy);
             waveSprites.push_back(enemy);
             waveSprites.push_back(burstEnemy);
-        } 
+        }
+        // spawn a chest
+        auto chest = new Chest(currentScene, rand() % 600 + 100, rand() % 800 + 100);
+        currentScene->createObject(chest);
     }else if(currentWave == 2){
         // Spawn some enemys
         for(int i = 0; i < 4; i++){
@@ -44,6 +49,8 @@ void Spawner::spawnEnemies() {
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
         } 
+        auto chest = new Chest(currentScene, rand() % 600 + 100, rand() % 800 + 100);
+        currentScene->createObject(chest);
     }
 }
 

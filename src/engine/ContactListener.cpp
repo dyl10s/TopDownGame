@@ -2,7 +2,9 @@
 #include "entities/enemies/BaseEnemy.hpp"
 #include "entities/Bullet.hpp"
 #include "entities/Player.hpp"
+#include "entities/Chest.hpp"
 #include <SDL2/SDL.h>
+#include <iostream>
 
 ContactListener::ContactListener(Scene* scene) {
     currentScene = scene;
@@ -52,5 +54,14 @@ void ContactListener::BeginContact(b2Contact* contact){
                  currentScene->spawner->closeDoor();
             }
         }
+    }
+
+    if(item1->getType() == "Chest" && item2->getType() == "Player") {
+            std::cout << "HMMMM";
+            ((Chest*)item1)->spawnItem();
+    }
+    if(item1->getType() == "Player" && item2->getType() == "Chest") {
+            std::cout << "HMMMM";
+            ((Chest*)item2)->spawnItem();
     }
 }

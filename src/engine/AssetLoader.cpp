@@ -9,6 +9,8 @@ SDL_Rect** AssetLoader::friendlyBullet;
 SDL_Rect** AssetLoader::player;
 
 SDL_Rect** AssetLoader::door;
+SDL_Rect** AssetLoader::chest;
+SDL_Rect** AssetLoader::testItem;
 
 // Enemies
 SDL_Rect** AssetLoader::basicEnemy;
@@ -63,6 +65,18 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
     door = new SDL_Rect*[2] {
         new SDL_Rect({32, 236, 32, 20}),
         new SDL_Rect({80, 236, 32, 20})
+    };
+
+    chest = new SDL_Rect*[3] {
+        new SDL_Rect({304, 288, 16, 16}),
+        new SDL_Rect({320, 288, 16, 16}),
+        new SDL_Rect({336, 288, 16, 16})
+    };
+
+    testItem = new SDL_Rect*[3] {
+        new SDL_Rect({291, 228, 10, 11}),
+        new SDL_Rect({307, 228, 10, 11}),
+        new SDL_Rect({323, 228, 10, 11})
     };
 
     // Enemies
