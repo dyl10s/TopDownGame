@@ -23,6 +23,7 @@ class AssetLoader {
                 // Enemies
                 static SDL_Rect** basicEnemy;
                 static SDL_Rect** burstEnemy;
+                static SDL_Rect** spiralEnemy;
 
                 // Static
                 static SDL_Rect topWall;

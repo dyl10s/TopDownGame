@@ -19,7 +19,9 @@ class BaseWeapon : UGameObject {
 	public:
 		BaseWeapon(Scene* scene, bool enemy);
 		void update(double delta);
+		bool canShoot();
 		virtual void shoot(Direction dir, int x, int y);
+		virtual void shoot(double xDir, double yDir, int x, int y);
 	protected:
 		double shootSpeed = 1000;
 		double fireRate = .3;

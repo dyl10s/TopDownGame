@@ -15,6 +15,7 @@ SDL_Rect** AssetLoader::testItem;
 // Enemies
 SDL_Rect** AssetLoader::basicEnemy;
 SDL_Rect** AssetLoader::burstEnemy;
+SDL_Rect** AssetLoader::spiralEnemy;
 
 // Static
 SDL_Rect AssetLoader::topWall;
@@ -91,6 +92,13 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
         new SDL_Rect({388, 38, 10, 10}),
         new SDL_Rect({404, 38, 10, 10}),
         new SDL_Rect({420, 38, 10, 10})
+    };
+
+    spiralEnemy = new SDL_Rect*[4] {
+        new SDL_Rect({22, 326, 20, 26}),
+        new SDL_Rect({54, 326, 20, 26}),
+        new SDL_Rect({85, 326, 20, 26}),
+        new SDL_Rect({116, 326, 20, 26})
     };
 
     // Static
