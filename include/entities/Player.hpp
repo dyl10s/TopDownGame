@@ -8,6 +8,7 @@
 #include "engine/Sprite.hpp"
 #include "engine/Scene.hpp"
 #include "entities/weapons/BaseWeapon.hpp"
+#include <vector>
 
 class Player : public Sprite {
 	public:
@@ -24,6 +25,7 @@ class Player : public Sprite {
 		void playerHitDoor();
 		void setWeapon(BaseWeapon* weapon);
 		void resetToDefaults();
+		void addHeart();
 	private:
 		void createBullet(int xVel, int yVel);
 		Vector3 velocity;
@@ -35,7 +37,7 @@ class Player : public Sprite {
 		int maxHealth = 6;
 		BaseWeapon* currentWeapon;
 		Scene* currentScene;
-		Sprite** heartIcons;
+		std::vector<Sprite*> heartIcons;
 
 };
 
