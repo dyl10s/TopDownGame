@@ -6,7 +6,6 @@
 #include "entities/enemies/SpiralEnemy.hpp"
 #include "entities/Chest.hpp"
 #include "entities/items/Item.hpp"
-#include "entities/items/HeartItem.hpp"
 
 Spawner::Spawner(Scene* scene, StaticEntity* door) : Sprite("Test", "./assets/stick.ttf", 10, 30){
     currentScene = scene;
@@ -65,7 +64,6 @@ void Spawner::spawnEnemies() {
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
         }
-
     }
     else if(currentWave <= 5) // rooms before first item
     { 
