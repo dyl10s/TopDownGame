@@ -110,10 +110,10 @@ void Engine::run(){
 
 		// destroy objects
 		for(std::vector<DUGameObject*>::iterator it = currentScene->removedObjects.begin(); it != currentScene->removedObjects.end(); ++it){
-			currentScene->updateables.erase(
+			auto deletedUpdatable = currentScene->updateables.erase(
 				std::remove(currentScene->updateables.begin(), currentScene->updateables.end(), (*it)), currentScene->updateables.end());
 
-			currentScene->drawables.erase(
+			auto deletedDrawable = currentScene->drawables.erase(
 				std::remove(currentScene->drawables.begin(), currentScene->drawables.end(), (*it)), currentScene->drawables.end());
 			
 			currentScene->collision->removeObject((Sprite*)(*it));

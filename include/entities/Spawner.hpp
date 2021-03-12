@@ -26,6 +26,9 @@ class Spawner : public Sprite {
 		std::vector<Sprite*> waveSprites;
 		bool readyForNextWave();
 		void spawnEnemies();
+		void setTextAsMessage(std::string text);
+		void setTextAsUI(std::string text);
+		bool isFirstUpdate = true;
 
 		enum State {
 			WaitingForDeath,

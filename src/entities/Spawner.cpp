@@ -6,15 +6,20 @@
 #include "entities/Chest.hpp"
 #include "entities/items/Item.hpp"
 
-Spawner::Spawner(Scene* scene, StaticEntity* door) : Sprite("Welcome!", "./assets/stick.ttf", 10, 30){
+Spawner::Spawner(Scene* scene, StaticEntity* door) : Sprite("Test", "./assets/stick.ttf", 10, 30){
     currentScene = scene;
-    position.setX(850);
-    position.setY(5);
     currentScene->spawner = this;
     this->door = door;
+    setType("Spawner");
 }
 
 void Spawner::update(double delta){
+
+    if(isFirstUpdate) {
+        isFirstUpdate = false;
+        setTextAsMessage("Welcome to DinoDungeon!");
+    }
+
     timeSinceSpawnCheck += delta;
 
     if(curState == SpawningEnemies){
@@ -82,24 +87,42 @@ void Spawner::closeDoor() {
         curState = SpawningEnemies;
         door->setAnimationFrame(0);
         currentWave++;
-        setText("Wave " + std::to_string(currentWave));
+        setTextAsUI("Room " + std::to_string(currentWave));
     }
 }
 
 void Spawner::resetGame() {
     currentWave = 0;
-    setText("Welcome");
-    for(int i = 0; i < waveSprites.size(); ++i){
-        currentScene->removeObject(waveSprites[i]);
-    }
+    setTextAsMessage("Welcome to DinoDungeon!");
 
     auto drawables = currentScene->getDrawables();
 
     for(int i = 0; i < drawables.size(); ++i){
         auto curSprite = (Sprite*)drawables[i];
-        if(curSprite->getType() == "Bullet"){
+
+        // All the things we need to keep alive to start the next game
+        if(
+            curSprite->getType() != "Static" && 
+            curSprite->getType() != "Player" && 
+            curSprite->getType() != "Spawner" &&
+            curSprite->getType() != "Door"){
             currentScene->removeObject(curSprite);
         }
+
     }
     waveSprites.clear();
+}
+
+void Spawner::setTextAsMessage(std::string text) {
+    //1024, 768
+    setText(text);
+
+    position.setX(1024 / 2 - width / 2);
+    position.setY(500);
+}
+
+void Spawner::setTextAsUI(std::string text) {
+    position.setX(850);
+    position.setY(5);
+    setText(text);
 }

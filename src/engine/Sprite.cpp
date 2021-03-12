@@ -58,12 +58,14 @@ Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect* sourceRect, int layer, int wi
 
 	if(width == -1){
 		rect->w = surface->w;
+		width = surface->w;
 	}else{
 		rect->w = width;
 	}
 
 	if(height == -1){
 		rect->h = surface->h;
+		height = surface->h;
 	}else{
 		rect->h = height;
 	}
@@ -89,12 +91,14 @@ Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect** sourceRects, int frames, flo
 
 	if(width == -1){
 		rect->w = sourceRects[0]->w;
+		width = sourceRects[0]->w;
 	}else{
 		rect->w = width;
 	}
 
 	if(height == -1){
 		rect->h = sourceRects[0]->h;
+		height = sourceRects[0]->h;
 	}else{
 		rect->h = height;
 	}
@@ -137,6 +141,9 @@ void Sprite::createTextSurface(){
 	if(surface == NULL){
 		SDL_Log("Can't create text. %s", SDL_GetError());
 	}
+
+	width = surface->w;
+	height = surface->h;
 
 	createTexture(surface);
 }
