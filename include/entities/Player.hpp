@@ -23,6 +23,7 @@ class Player : public Sprite {
 		void giveHealth(int hp);
 		void playerHitDoor();
 		void setWeapon(BaseWeapon* weapon);
+		void resetToDefaults();
 	private:
 		void createBullet(int xVel, int yVel);
 		Vector3 velocity;

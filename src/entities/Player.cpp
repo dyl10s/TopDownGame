@@ -9,11 +9,14 @@
 #include <SDL2/SDL.h>
 
 Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::player, 4, .2, 0, 24, 34) {
-	velocity.setX(500);
-	velocity.setY(700);
+	
+	position.setX(500);
+	position.setY(700);
+
+	velocity.setX(0);
+	velocity.setY(0);
 	velocity.setZ(0);
-	position.setX(100);
-	position.setY(100);
+	
 	currentScene = scene;
 
 	setType("Player");
@@ -107,8 +110,7 @@ void Player::update(double delta){
 	if(health <= 0){
 		// Death Code
 		currentScene->spawner->resetGame();
-		body->SetTransform(b2Vec2(500 / METERSTOPIXELS, 700 / METERSTOPIXELS), body->GetAngle());
-		health = maxHealth;
+		resetToDefaults();
 		return;
 	}
 
@@ -176,4 +178,11 @@ void Player::giveHealth(int hp){
 
 void Player::playerHitDoor() {
 	hitDoor = true;
+}
+
+void Player::resetToDefaults() {
+	setWeapon(new BaseWeapon(currentScene, false));
+	body->SetTransform(b2Vec2(500 / METERSTOPIXELS, 700 / METERSTOPIXELS), body->GetAngle());
+	maxHealth = 6;
+	health = maxHealth;
 }
