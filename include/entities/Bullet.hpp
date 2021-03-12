@@ -10,7 +10,7 @@
 
 class Bullet : public Sprite {
 	public:
-		Bullet(Scene* scene, int x, int y, double xVel, double yVel, int damage = 1, bool enemy = false);
+		Bullet(Scene* scene, int x, int y, double xVel, double yVel, int damage = 1, bool enemy = false, double scale = 1.0);
 		~Bullet();
 		void update(double delta);
 		int getDamage();

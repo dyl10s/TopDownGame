@@ -2,11 +2,11 @@
 #include "engine/Collision.hpp"
 #include "engine/AssetLoader.hpp"
 
-Bullet::Bullet(Scene* scene, int x, int y, double xVel, double yVel, int damage, bool enemy) : 
+Bullet::Bullet(Scene* scene, int x, int y, double xVel, double yVel, int damage, bool enemy, double scale) : 
     Sprite({
         enemy ?
-        Sprite{AssetLoader::tilesheet, AssetLoader::enemyBullet, 4, .2, 0, 10, 10} :
-        Sprite{AssetLoader::tilesheet, AssetLoader::friendlyBullet, 4, .2, 0, 10, 10}
+        Sprite{AssetLoader::tilesheet, AssetLoader::enemyBullet, 4, .2, 0, 10 * scale, 10 * scale} :
+        Sprite{AssetLoader::tilesheet, AssetLoader::friendlyBullet, 4, .2, 0, 10 * scale, 10 * scale}
     }) {
     currentScene = scene;
     position.setX(x);
