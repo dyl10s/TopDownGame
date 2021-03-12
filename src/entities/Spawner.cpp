@@ -34,6 +34,23 @@ void Spawner::update(double delta){
 }
 
 void Spawner::spawnEnemies() {
+
+    // Clean up anything we dont need
+    auto drawables = currentScene->getDrawables();
+    // All the things we need to keep alive to start the next room
+    for(int i = 0; i < drawables.size(); ++i){
+        auto curSprite = (Sprite*)drawables[i];
+
+        // All the things we need to keep alive to start the next game
+        if(
+            curSprite->getType() != "Static" && 
+            curSprite->getType() != "Player" && 
+            curSprite->getType() != "Spawner" &&
+            curSprite->getType() != "Door"){
+            currentScene->removeObject(curSprite);
+        }
+    }
+
     if(currentWave == 1){
         // Spawn some enemys
         for(int i = 0; i < 2; i++){
