@@ -30,7 +30,6 @@ class Spawner : public Sprite {
 		void setTextAsUI(std::string text);
 		bool isFirstUpdate = true;
 		int difficultyLevel = 0;
-
 		int getRandomNumber(int min, int max);
 
 		enum State {

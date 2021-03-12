@@ -9,10 +9,12 @@
 #include "Collision.hpp"
 #include "Utility.hpp"
 #include "entities/Spawner.hpp"
+#include "entities/Timer.hpp"
 
 // http://www.cplusplus.com/forum/general/56475/
 class Collision;
 class Spawner;
+class Timer;
 
 class Scene {
 	public:
@@ -35,7 +37,8 @@ class Scene {
 		std::vector<Updateable*> getUpdateables();
 		std::vector<Drawable*> getDrawables();
 
-		Spawner* spawner;
+		Spawner* spawner = nullptr;
+		Timer* timer = nullptr;
 	private:
 		std::vector<Updateable*> updateables;
 		std::vector<Drawable*> drawables;

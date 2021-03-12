@@ -4,6 +4,7 @@
 #include "entities/Bullet.hpp"
 #include "entities/Spawner.hpp"
 #include "entities/StaticEntity.hpp"
+#include "entities/Timer.hpp"
 #include "engine/Sound.hpp"
 #include <SDL2/SDL.h>
 #include <box2d/box2d.h>
@@ -83,6 +84,12 @@ int main(int argc, char** argv){
 
 	// Make a player and add to scene. Should update and draw.
 	Player* mainPlayer = new Player(&one);
+
+	// Add speedrun timer
+	Timer* t = new Timer(&one);
+	one.addUpdateable(t);
+	one.addDrawable(t);
+	one.timer = t;
 
 	// Initialize Sound
 	Sound* sound = new Sound();

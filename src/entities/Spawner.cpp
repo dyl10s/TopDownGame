@@ -57,8 +57,11 @@ void Spawner::spawnEnemies() {
         auto chest = new Chest(currentScene);
         currentScene->createObject(chest);
     }
-    else if(currentWave <= 2) // First 2 room
+    else if(currentWave <= 2) // First 2 rooms
     {
+        currentScene->timer->reset();
+        currentScene->timer->start();
+
         for(int i = 0; i < getRandomNumber(2, 5); i++){
             auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
             currentScene->createObject(enemy);
@@ -121,6 +124,7 @@ void Spawner::spawnEnemies() {
     }
     else 
     {
+        currentScene->timer->stop();
         // Win game
         setTextAsMessage("You have concurred DinoDungeon!");
     }

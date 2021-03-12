@@ -111,6 +111,7 @@ void Player::update(double delta){
 		// Death Code
 		currentScene->spawner->resetGame();
 		resetToDefaults();
+		currentScene->timer->stop();
 		return;
 	}
 
