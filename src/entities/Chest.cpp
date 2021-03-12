@@ -71,6 +71,7 @@ void Chest::update(double delta) {
     setAnimationFrame(2);
     empty = true;
   }
+  body->SetLinearDamping(2);
 }
 
 void Chest::spawnItem() {

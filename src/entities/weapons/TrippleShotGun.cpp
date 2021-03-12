@@ -3,7 +3,7 @@
 
 TrippleShotGun::TrippleShotGun(Scene* scene, bool enemy) : BaseWeapon(scene, enemy){
     shootSpeed = 600;
-    damage = 1;
+    damage = 2;
     fireRate = .6;
 } 
 
