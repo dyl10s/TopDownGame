@@ -39,23 +39,6 @@ void Player::addHeart() {
 	auto newHeart = new Sprite(AssetLoader::tilesheet, AssetLoader::hearts, 3, 0, 0, 26, 20);
 	newHeart->setPosition((maxHealth / 2 - 1) * 35 + 20, 20);
 	heartIcons.push_back(newHeart);
-	// Update the HUD
-/*	auto allocatedHp = 0;
-	for(int i = 0; i < maxHealth / 2; i++){
-		// Set frame based on HP
-		auto hpLeftToAllocate = health - allocatedHp;
-		if(hpLeftToAllocate == 0){
-			heartIcons[i]->setAnimationFrame(2);
-		}else if(hpLeftToAllocate == 1){
-			heartIcons[i]->setAnimationFrame(1);
-			allocatedHp += 1;
-		}else{
-			heartIcons[i]->setAnimationFrame(0);
-			allocatedHp += 2;
-		}
-
-		heartIcons[i]->update(delta);
-	}*/
 }
 
 Player::~Player(){
