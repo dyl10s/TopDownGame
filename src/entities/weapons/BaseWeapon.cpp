@@ -23,6 +23,10 @@ bool BaseWeapon::canShoot(){
     return false;
 }
 
+bool BaseWeapon::hasRecoil(){
+  return false;
+}
+
 void BaseWeapon::shoot(Direction dir, int x, int y){
     if(canShoot()){
         if(dir == Up){

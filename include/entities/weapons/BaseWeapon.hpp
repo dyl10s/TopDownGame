@@ -26,7 +26,8 @@ class BaseWeapon : UGameObject {
 
 		// If you want enemies to be able to shoot on angles you can also include this
 		virtual void shoot(double xDir, double yDir, int x, int y);
-		
+
+		virtual bool hasRecoil();
 	protected:
 		double shootSpeed = 1000;
 		double fireRate = .3;

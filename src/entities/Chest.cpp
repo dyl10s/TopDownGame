@@ -5,6 +5,10 @@
 #include "entities/weapons/TrippleShotGun.hpp"
 #include "entities/weapons/MultiDirectionGun.hpp"
 #include "entities/weapons/BubbleGun.hpp"
+#include "entities/weapons/Cannon.hpp"
+#include "entities/items/HeartItem.hpp"
+#include "entities/weapons/BurstGun.hpp"
+#include "entities/items/HealthItem.hpp"
 #include <time.h>
 #include <stdlib.h>
 
@@ -44,7 +48,7 @@ void Chest::initialSetup(Scene* scene) {
 }
 
 void Chest::randomItem() {
-  int randomNumber = rand() % 4;
+  int randomNumber = rand() % 8;
   switch(randomNumber) {
     case 0:
       item = (Item*)new WeaponItem(currentScene, position.getX(), position.getY(), (BaseWeapon*)new MachineGun(currentScene, false));
@@ -57,6 +61,18 @@ void Chest::randomItem() {
       break;
     case 3:
       item = (Item*)new WeaponItem(currentScene, position.getX(), position.getY(), (BaseWeapon*)new TrippleShotGun(currentScene, false));
+      break;
+    case 4:
+      item = (Item*)new WeaponItem(currentScene, position.getX(), position.getY(), (BaseWeapon*)new BurstGun(currentScene, false));
+      break;
+    case 5:
+      item = (Item*)new HeartItem(currentScene, position.getX(), position.getY());
+      break;
+    case 6:
+      item = (Item*)new HealthItem(currentScene, position.getX(), position.getY());
+      break;
+    case 7:
+      item = (Item*)new WeaponItem(currentScene, position.getX(), position.getY(), (BaseWeapon*)new Cannon(currentScene, false));
       break;
   }
 }

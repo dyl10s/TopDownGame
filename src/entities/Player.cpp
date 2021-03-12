@@ -7,6 +7,7 @@
 #include "entities/weapons/TrippleShotGun.hpp"
 #include "entities/weapons/BubbleGun.hpp"
 #include <SDL2/SDL.h>
+#include "entities/weapons/Cannon.hpp"
 
 Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::player, 4, .2, 0, 24, 34) {
 	
@@ -94,18 +95,29 @@ void Player::update(double delta){
 	if(keystate[SDL_SCANCODE_4]){
 		currentWeapon = (BaseWeapon*)new BubbleGun(currentScene, false);
 	}
+	if(keystate[SDL_SCANCODE_5]){
+		currentWeapon = (BaseWeapon*)new Cannon(currentScene, false);
+	}
 	if(keystate[SDL_SCANCODE_0]){
 		currentWeapon = new BaseWeapon(currentScene, false);
 	}
 
 	//Shooting
 	if(keystate[SDL_SCANCODE_UP]){
+		if(currentWeapon->hasRecoil())
+			velocity.setY(maxSpeed * 12);
 		currentWeapon->shoot(Up, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_DOWN]){
+		if(currentWeapon->hasRecoil())
+			velocity.setY(-maxSpeed * 12);
 		currentWeapon->shoot(Down, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_LEFT]){
+		if(currentWeapon->hasRecoil())
+			velocity.setX(maxSpeed * 12);
 		currentWeapon->shoot(Left, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_RIGHT]){
+		if(currentWeapon->hasRecoil())
+			velocity.setX(-maxSpeed * 12);
 		currentWeapon->shoot(Right, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}
 
