@@ -14,7 +14,7 @@ Engine::Engine(int _width, int _height){
 	frameRate = 1000.0 / FPS;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
-	window = SDL_CreateWindow("Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
+	window = SDL_CreateWindow("DinoDungeon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
 	if( window == nullptr ){
 		SDL_Log("Could not create a window. %s", SDL_GetError());
 	}
