@@ -40,7 +40,7 @@ void Spawner::spawnEnemies() {
             waveSprites.push_back(burstEnemy);
         }
         // spawn a chest
-        auto chest = new Chest(currentScene, rand() % 600 + 100, rand() % 800 + 100);
+        auto chest = new Chest(currentScene);
         currentScene->createObject(chest);
     }else if(currentWave == 2){
         // Spawn some enemys
@@ -49,7 +49,7 @@ void Spawner::spawnEnemies() {
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
         } 
-        auto chest = new Chest(currentScene, rand() % 600 + 100, rand() % 800 + 100);
+        auto chest = new Chest(currentScene);
         currentScene->createObject(chest);
     }
 }

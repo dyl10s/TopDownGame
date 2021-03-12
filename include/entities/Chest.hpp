@@ -12,13 +12,17 @@ class Chest : public Sprite {
 	public:
 		Chest(Scene* scene);
 		Chest(Scene* scene, int x, int y);
+		Chest(Scene* scene, int x, int y, Item* item);
 		~Chest();
 		void update(double delta);
 		void spawnItem();
 	private:
+		bool empty;
+		void randomItem();
 		Scene* currentScene;
 		Item* item;
 		bool opened;
+		void initialSetup(Scene* scene);
 };
 
 #endif
