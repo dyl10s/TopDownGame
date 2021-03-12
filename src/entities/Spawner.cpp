@@ -5,6 +5,7 @@
 #include "entities/enemies/BurstEnemy.hpp"
 #include "entities/Chest.hpp"
 #include "entities/items/Item.hpp"
+#include "entities/items/HeartItem.hpp"
 
 Spawner::Spawner(Scene* scene, StaticEntity* door) : Sprite("Test", "./assets/stick.ttf", 10, 30){
     currentScene = scene;
@@ -62,7 +63,7 @@ void Spawner::spawnEnemies() {
             waveSprites.push_back(burstEnemy);
         }
         // spawn a chest
-        auto chest = new Chest(currentScene);
+        auto chest = new Chest(currentScene, 200, 200, (Item*)new HeartItem(currentScene, 200, 200));
         currentScene->createObject(chest);
     }else if(currentWave == 2){
         // Spawn some enemys
@@ -71,7 +72,7 @@ void Spawner::spawnEnemies() {
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
         } 
-        auto chest = new Chest(currentScene);
+        auto chest = new Chest(currentScene, 200, 200, (Item*)new HeartItem(currentScene, 200, 200));
         currentScene->createObject(chest);
     }
 }
