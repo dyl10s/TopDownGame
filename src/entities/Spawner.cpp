@@ -3,6 +3,7 @@
 #include "entities/StaticEntity.hpp"
 #include "entities/enemies/BaseEnemy.hpp"
 #include "entities/enemies/BurstEnemy.hpp"
+#include "entities/enemies/SpiralEnemy.hpp"
 #include "entities/Chest.hpp"
 #include "entities/items/Item.hpp"
 #include "entities/items/HeartItem.hpp"
@@ -52,28 +53,78 @@ void Spawner::spawnEnemies() {
         }
     }
 
-    if(currentWave == 1){
-        // Spawn some enemys
-        for(int i = 0; i < 2; i++){
-            auto enemy = new BaseEnemy(currentScene, rand() % 500 + 100, rand() % 500 + 100);
-            auto burstEnemy = new BurstEnemy(currentScene, rand() % 500 + 100, rand() % 500 + 100);
+    if(currentWave % 5 == 0) // On each 5th room we can generate a chest
+    {
+        auto chest = new Chest(currentScene);
+        currentScene->createObject(chest);
+    }
+    else if(currentWave <= 2) // First 2 room
+    {
+        for(int i = 0; i < getRandomNumber(2, 5); i++){
+            auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
             currentScene->createObject(enemy);
-            currentScene->createObject(burstEnemy);
             waveSprites.push_back(enemy);
-            waveSprites.push_back(burstEnemy);
         }
-        // spawn a chest
-        auto chest = new Chest(currentScene, 200, 200, (Item*)new HeartItem(currentScene, 200, 200));
-        currentScene->createObject(chest);
-    }else if(currentWave == 2){
-        // Spawn some enemys
-        for(int i = 0; i < 4; i++){
-            auto enemy = new BaseEnemy(currentScene, rand() % 1000 + 100, rand() % 500 + 100);
+
+    }
+    else if(currentWave <= 5) // rooms before first item
+    { 
+        for(int i = 0; i < getRandomNumber(0, 3); i++){
+            auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
-        } 
-        auto chest = new Chest(currentScene, 200, 200, (Item*)new HeartItem(currentScene, 200, 200));
-        currentScene->createObject(chest);
+        }
+
+        for(int i = 0; i < getRandomNumber(1, 2); i++){
+            auto enemy = new BurstEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+    }
+    else if(currentWave <= 7) // Bunch of bursts
+    { 
+        for(int i = 0; i < getRandomNumber(0, 1); i++){
+            auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(3, 5); i++){
+            auto enemy = new BurstEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+    }
+    else if(currentWave <= 8) // Intro to spiral 
+    { 
+        auto enemy = new SpiralEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+        currentScene->createObject(enemy);
+        waveSprites.push_back(enemy);
+    }
+    else if(currentWave <= 10) // Mix of everyone 
+    { 
+        for(int i = 0; i < getRandomNumber(1, 2); i++){
+            auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(1, 1); i++){
+            auto enemy = new BurstEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(1, 1); i++){
+            auto enemy = new SpiralEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+    }
+    else 
+    {
+        // Win game
+        setTextAsMessage("You have concurred DinoDungeon!");
     }
 }
 
@@ -143,4 +194,9 @@ void Spawner::setTextAsUI(std::string text) {
     position.setX(850);
     position.setY(5);
     setText(text);
+}
+
+int Spawner::getRandomNumber(int min, int max) {
+    int range = max - min + 1;
+    return (rand() % range) + min;
 }
