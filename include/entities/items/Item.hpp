@@ -10,7 +10,7 @@
 
 class Item : public Sprite {
 	public:
-		Item(Scene* scene, int x, int y);
+		Item(Scene* scene, int x, int y, SDL_Rect* itemImage);
 		~Item();
 		virtual void activate(Player* player) = 0;
 		void spawn();

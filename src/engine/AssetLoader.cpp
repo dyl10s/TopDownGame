@@ -10,7 +10,10 @@ SDL_Rect** AssetLoader::player;
 
 SDL_Rect** AssetLoader::door;
 SDL_Rect** AssetLoader::chest;
-SDL_Rect** AssetLoader::testItem;
+
+SDL_Rect AssetLoader::hpPot;
+SDL_Rect AssetLoader::extraHeart;
+SDL_Rect AssetLoader::weapon;
 
 // Enemies
 SDL_Rect** AssetLoader::basicEnemy;
@@ -74,11 +77,9 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
         new SDL_Rect({336, 288, 16, 16})
     };
 
-    testItem = new SDL_Rect*[3] {
-        new SDL_Rect({291, 228, 10, 11}),
-        new SDL_Rect({307, 228, 10, 11}),
-        new SDL_Rect({323, 228, 10, 11})
-    };
+    hpPot = {291, 228, 10, 11};
+    extraHeart = {289, 258, 13, 12};
+    weapon = {293, 18, 6, 13};
 
     // Enemies
     basicEnemy = new SDL_Rect*[3] {

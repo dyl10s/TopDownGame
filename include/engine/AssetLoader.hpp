@@ -18,7 +18,10 @@ class AssetLoader {
 
                 static SDL_Rect** door;
                 static SDL_Rect** chest;
-		static SDL_Rect** testItem;
+                
+		static SDL_Rect hpPot;
+		static SDL_Rect extraHeart;
+		static SDL_Rect weapon;
 
                 // Enemies
                 static SDL_Rect** basicEnemy;
