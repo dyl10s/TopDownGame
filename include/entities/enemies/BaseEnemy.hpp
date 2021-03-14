@@ -12,7 +12,7 @@
 class BaseEnemy : public Sprite {
 	public:
 		BaseEnemy(Scene* scene, int x, int y);
-		BaseEnemy(Scene* scene, int x, int y, int w, int h, SDL_Rect** sprites);
+		BaseEnemy(Scene* scene, int x, int y, int w, int h, SDL_Rect** sprites, int frames = 3);
 		~BaseEnemy();
 		virtual void update(double delta);
 		virtual void takeDamage(int damage);

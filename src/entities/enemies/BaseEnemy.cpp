@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h>
 #include <stdlib.h>
 
-BaseEnemy::BaseEnemy(Scene* scene, int x, int y, int w, int h, SDL_Rect** sprites) : Sprite(AssetLoader::tilesheet, sprites, 3, .2, 0, w, h) {
+BaseEnemy::BaseEnemy(Scene* scene, int x, int y, int w, int h, SDL_Rect** sprites, int frames) : Sprite(AssetLoader::tilesheet, sprites, frames, .2, 0, w, h) {
 	setupEnemy(scene, x, y);
 }
 

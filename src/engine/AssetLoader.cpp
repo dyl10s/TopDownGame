@@ -19,6 +19,8 @@ SDL_Rect AssetLoader::weapon;
 SDL_Rect** AssetLoader::basicEnemy;
 SDL_Rect** AssetLoader::burstEnemy;
 SDL_Rect** AssetLoader::spiralEnemy;
+SDL_Rect** AssetLoader::brownSlime;
+SDL_Rect** AssetLoader::greenSlime;
 
 // Static
 SDL_Rect AssetLoader::topWall;
@@ -100,6 +102,16 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
         new SDL_Rect({54, 326, 20, 26}),
         new SDL_Rect({85, 326, 20, 26}),
         new SDL_Rect({116, 326, 20, 26})
+    };
+
+    brownSlime = new SDL_Rect*[2] {
+        new SDL_Rect({384, 114, 16, 14}),
+        new SDL_Rect({368, 114, 16, 14})
+    };
+
+    greenSlime = new SDL_Rect*[2] {
+        new SDL_Rect({449, 114, 15, 14}),
+        new SDL_Rect({432, 114, 15, 14})
     };
 
     // Static

@@ -4,6 +4,8 @@
 #include "entities/enemies/BaseEnemy.hpp"
 #include "entities/enemies/BurstEnemy.hpp"
 #include "entities/enemies/SpiralEnemy.hpp"
+#include "entities/enemies/GreenSlime.hpp"
+#include "entities/enemies/BrownSlime.hpp"
 #include "entities/Chest.hpp"
 #include "entities/items/Item.hpp"
 
@@ -77,12 +79,12 @@ void Spawner::spawnEnemies() {
         }
 
         for(int i = 0; i < getRandomNumber(1, 2); i++){
-            auto enemy = new BurstEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            auto enemy = new GreenSlime(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
         }
     }
-    else if(currentWave <= 7) // Bunch of bursts
+    else if(currentWave <= 7)
     { 
         for(int i = 0; i < getRandomNumber(0, 1); i++){
             auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
@@ -102,7 +104,7 @@ void Spawner::spawnEnemies() {
         currentScene->createObject(enemy);
         waveSprites.push_back(enemy);
     }
-    else if(currentWave <= 10) // Mix of everyone 
+    else if(currentWave <= 10) // Mix of everyone so far
     { 
         for(int i = 0; i < getRandomNumber(1, 2); i++){
             auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
@@ -118,6 +120,50 @@ void Spawner::spawnEnemies() {
 
         for(int i = 0; i < getRandomNumber(1, 1); i++){
             auto enemy = new SpiralEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+    }
+    else if(currentWave <= 15) {
+        for(int i = 0; i < getRandomNumber(1, 3); i++){
+            auto enemy = new GreenSlime(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(1, 3); i++){
+            auto enemy = new BrownSlime(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+    }
+    else if(currentWave <= 20) { // Really hard waves
+        for(int i = 0; i < getRandomNumber(0, 2); i++){
+            auto enemy = new GreenSlime(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(0, 2); i++){
+            auto enemy = new BrownSlime(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(1, 2); i++){
+            auto enemy = new BaseEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(0, 1); i++){
+            auto enemy = new SpiralEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
+            currentScene->createObject(enemy);
+            waveSprites.push_back(enemy);
+        }
+
+        for(int i = 0; i < getRandomNumber(3, 4); i++){
+            auto enemy = new BurstEnemy(currentScene, getRandomNumber(100, 900), getRandomNumber(50, 400));
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
         }

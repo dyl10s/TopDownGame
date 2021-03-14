@@ -18,7 +18,7 @@ class AssetLoader {
 
                 static SDL_Rect** door;
                 static SDL_Rect** chest;
-                
+
 		static SDL_Rect hpPot;
 		static SDL_Rect extraHeart;
 		static SDL_Rect weapon;
@@ -27,6 +27,8 @@ class AssetLoader {
                 static SDL_Rect** basicEnemy;
                 static SDL_Rect** burstEnemy;
                 static SDL_Rect** spiralEnemy;
+                static SDL_Rect** brownSlime;
+                static SDL_Rect** greenSlime;
 
                 // Static
                 static SDL_Rect topWall;

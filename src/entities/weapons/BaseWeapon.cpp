@@ -15,6 +15,10 @@ void BaseWeapon::update(double delta){
     timeSinceShot += delta;
 }
 
+void BaseWeapon::setFirerate(double rate) {
+    fireRate = rate;
+}
+
 bool BaseWeapon::canShoot(){
     if(timeSinceShot > fireRate){
         return true;
