@@ -3,6 +3,7 @@
 
 BurstGun::BurstGun(Scene* scene, bool enemy) : BaseWeapon(scene, enemy){
     shootSpeed = 300;
+    weaponName = "Burst Gun";
 }
 
 void BurstGun::shoot(Direction dir, int x, int y){

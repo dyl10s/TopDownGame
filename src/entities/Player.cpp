@@ -32,6 +32,9 @@ Player::Player(Scene* scene) : Sprite(AssetLoader::tilesheet, AssetLoader::playe
 		heartIcons.push_back(new Sprite(AssetLoader::tilesheet, AssetLoader::hearts, 3, 0, 0, 26, 20));
 		heartIcons[i]->setPosition(35 * i + 20, 20);
 	}
+
+	curWeaponName = new Sprite(currentWeapon->weaponName, "./assets/stick.ttf", 0, 30);
+	curWeaponName->setPosition(20, 725);
 }
 
 void Player::addHeart() {
@@ -98,6 +101,9 @@ void Player::update(double delta){
 	if(keystate[SDL_SCANCODE_5]){
 		currentWeapon = (BaseWeapon*)new Cannon(currentScene, false);
 	}
+	if(keystate[SDL_SCANCODE_KP_PLUS]){
+		currentScene->spawner->currentWave = 4;
+	}
 	if(keystate[SDL_SCANCODE_0]){
 		currentWeapon = new BaseWeapon(currentScene, false);
 	}
@@ -105,19 +111,19 @@ void Player::update(double delta){
 	//Shooting
 	if(keystate[SDL_SCANCODE_UP]){
 		if(currentWeapon->hasRecoil())
-			velocity.setY(maxSpeed * 12);
+			body->ApplyForceToCenter(b2Vec2(0, maxSpeed * 12), true);
 		currentWeapon->shoot(Up, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_DOWN]){
 		if(currentWeapon->hasRecoil())
-			velocity.setY(-maxSpeed * 12);
+			body->ApplyForceToCenter(b2Vec2(0, -maxSpeed * 12), true);
 		currentWeapon->shoot(Down, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_LEFT]){
 		if(currentWeapon->hasRecoil())
-			velocity.setX(maxSpeed * 12);
+			body->ApplyForceToCenter(b2Vec2(maxSpeed * 12, 0), true);
 		currentWeapon->shoot(Left, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}else if(keystate[SDL_SCANCODE_RIGHT]){
 		if(currentWeapon->hasRecoil())
-			velocity.setX(-maxSpeed * 12);
+			body->ApplyForceToCenter(b2Vec2(-maxSpeed * 12, 0), true);
 		currentWeapon->shoot(Right, body->GetPosition().x * METERSTOPIXELS, body->GetPosition().y * METERSTOPIXELS);
 	}
 
@@ -154,6 +160,9 @@ void Player::update(double delta){
 
 		heartIcons[i]->update(delta);
 	}
+
+	curWeaponName->setText(currentWeapon->weaponName);
+	curWeaponName->update(delta);
 }
 
 void Player::draw() {
@@ -163,6 +172,8 @@ void Player::draw() {
 	for(int i = 0; i < maxHealth / 2; i++){
 		heartIcons[i]->draw();
 	}
+
+	curWeaponName->draw();
 }
 
 void Player::left(double delta){

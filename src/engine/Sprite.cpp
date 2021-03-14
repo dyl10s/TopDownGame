@@ -239,8 +239,10 @@ void Sprite::setFont(std::string font, int fontSize){
 } 
 
 void Sprite::setText(std::string text){
-	this->text = text;
-	createTextSurface();
+	if(this->text != text) {
+		this->text = text;
+		createTextSurface();
+	}
 }
 
 void Sprite::setLayer(int layer){

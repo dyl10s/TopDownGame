@@ -20,14 +20,13 @@ class BaseWeapon : UGameObject {
 		BaseWeapon(Scene* scene, bool enemy);
 		void update(double delta);
 		bool canShoot();
-
 		// All weapon types should support this meathod of shooting
 		virtual void shoot(Direction dir, int x, int y);
-
 		// If you want enemies to be able to shoot on angles you can also include this
 		virtual void shoot(double xDir, double yDir, int x, int y);
-
 		virtual bool hasRecoil();
+
+		std::string weaponName = "Starter Gun";
 	protected:
 		double shootSpeed = 1000;
 		double fireRate = .3;

@@ -2,6 +2,7 @@
 #include "entities/Bullet.hpp"
 
 MultiDirectionGun::MultiDirectionGun(Scene* scene, bool enemy) : BaseWeapon(scene, enemy){
+    weaponName = "Multi-direction Gun";
 }
 
 void MultiDirectionGun::shoot(Direction dir, int x, int y){

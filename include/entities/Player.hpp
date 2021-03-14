@@ -38,6 +38,7 @@ class Player : public Sprite {
 		BaseWeapon* currentWeapon;
 		Scene* currentScene;
 		std::vector<Sprite*> heartIcons;
+		Sprite* curWeaponName;
 
 };
 

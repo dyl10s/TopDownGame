@@ -5,6 +5,7 @@ BubbleGun::BubbleGun(Scene* scene, bool enemy) : BaseWeapon(scene, enemy){
     fireRate = 2.5;
     shootSpeed = 100;
     damage = 1;
+    weaponName = "Bubble Gun";
 }
 
 void BubbleGun::shoot(Direction dir, int x, int y){

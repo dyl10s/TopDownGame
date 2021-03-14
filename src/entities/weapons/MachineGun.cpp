@@ -5,4 +5,5 @@ MachineGun::MachineGun(Scene* scene, bool enemy) : BaseWeapon(scene, enemy){
     fireRate = fireRate / 2;
     shootSpeed = shootSpeed * 1.2;
     damage = 1;
+    weaponName = "Machine Gun";
 }

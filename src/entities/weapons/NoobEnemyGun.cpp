@@ -5,4 +5,5 @@ NoobEnemyGun::NoobEnemyGun(Scene* scene, bool enemy) : BaseWeapon(scene, enemy){
     fireRate = fireRate * 3;
     shootSpeed = shootSpeed * .8;
     damage = 1;
+    weaponName = "Noob Gun";
 }

@@ -18,9 +18,9 @@ class Spawner : public Sprite {
 		void update(double delta);
 		void closeDoor();
 		void resetGame();
+		int currentWave = 0;
 	private:
         Scene* currentScene;
-		int currentWave = 0;
 		StaticEntity* door = nullptr;
 		float timeSinceSpawnCheck = 0;
 		std::vector<Sprite*> waveSprites;

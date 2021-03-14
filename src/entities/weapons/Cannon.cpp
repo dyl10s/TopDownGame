@@ -5,6 +5,7 @@ Cannon::Cannon(Scene* scene, bool enemy) : BaseWeapon(scene, enemy) {
   shootSpeed = 195;
   damage = 2;
   fireRate = 1.65;
+  weaponName = "Cannon";
 }
 
 bool Cannon::hasRecoil() {
