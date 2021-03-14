@@ -220,7 +220,7 @@ void Player::playerHitDoor() {
 }
 
 void Player::resetToDefaults() {
-	setWeapon(new BaseWeapon(currentScene, false));
+	currentWeapon = new BaseWeapon(currentScene, false);
 	body->SetTransform(b2Vec2(500 / METERSTOPIXELS, 700 / METERSTOPIXELS), body->GetAngle());
 	maxHealth = 6;
 	health = maxHealth;
