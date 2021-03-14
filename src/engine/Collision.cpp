@@ -79,9 +79,10 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	bodyDef.fixedRotation = true;
 	bodyDef.angle = 0;
 	bodyDef.position.Set(object->position.getX() / METERSTOPIXELS, object->position.getY() / METERSTOPIXELS);
+	bodyDef.userData = b2BodyUserData();
+	bodyDef.userData.pointer = (uintptr_t)object;
 
 	b2Body* body = world->CreateBody(&bodyDef);
-	body->GetUserData().pointer = (uintptr_t)object;
 	
 	b2PolygonShape box;
 	box.SetAsBox((object->rect->w / 2.0) / METERSTOPIXELS, (object->rect->h / 2.0) / METERSTOPIXELS);

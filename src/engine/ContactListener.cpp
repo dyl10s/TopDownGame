@@ -63,9 +63,17 @@ void ContactListener::BeginContact(b2Contact* contact){
             ((Chest*)item2)->spawnItem();
 
     if(item1->getType() == "Item" && item2->getType() == "Player")
-      ((Item*)item1)->activate((Player*)item2);
+    {
+        if(((Item*)item1)->timeAlive > ((Item*)item1)->pickupCooldown){
+            ((Item*)item1)->activate((Player*)item2);
+        }
+    }
 
-    if(item1->getType() == "Player" && item2->getType() == "Item")
-      ((Item*)item2)->activate((Player*)item1);
+    if(item1->getType() == "Player" && item2->getType() == "Item"){
+        if(((Item*)item2)->timeAlive > ((Item*)item2)->pickupCooldown){
+            ((Item*)item2)->activate((Player*)item1);
+        }
+    }
+      
 }
 

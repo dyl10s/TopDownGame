@@ -6,6 +6,7 @@
 #include "entities/weapons/MultiDirectionGun.hpp"
 #include "entities/weapons/TrippleShotGun.hpp"
 #include "entities/weapons/BubbleGun.hpp"
+#include "entities/items/WeaponItem.hpp"
 #include <SDL2/SDL.h>
 #include "entities/weapons/Cannon.hpp"
 
@@ -49,7 +50,13 @@ Player::~Player(){
 }
 
 void Player::setWeapon(BaseWeapon* weapon) {
-  currentWeapon = weapon;
+  	// Drop the old one
+	if(currentWeapon != nullptr) {
+		auto item = new WeaponItem(currentScene, position.getX() + width / 2, position.getY() + height / 2, currentWeapon);
+		((Item*)item)->spawn();
+	}
+
+	currentWeapon = weapon;
 }
 
 void Player::update(double delta){
@@ -87,25 +94,25 @@ void Player::update(double delta){
 	if(keystate[SDL_SCANCODE_1]){
 		// I think this causes a memory leak because we never delete the old weapon. However the engine crashes if we do
 		// change this because we are itterating over the updatables
-		currentWeapon = (BaseWeapon*)new MachineGun(currentScene, false);
+		setWeapon((BaseWeapon*)new MachineGun(currentScene, false));
 	}
 	if(keystate[SDL_SCANCODE_2]){
-		currentWeapon = (BaseWeapon*)new MultiDirectionGun(currentScene, false);
+		setWeapon(currentWeapon = (BaseWeapon*)new MultiDirectionGun(currentScene, false));
 	}
 	if(keystate[SDL_SCANCODE_3]){
-		currentWeapon = (BaseWeapon*)new TrippleShotGun(currentScene, false);
+		setWeapon(currentWeapon = (BaseWeapon*)new TrippleShotGun(currentScene, false));
 	}
 	if(keystate[SDL_SCANCODE_4]){
-		currentWeapon = (BaseWeapon*)new BubbleGun(currentScene, false);
+		setWeapon(currentWeapon = (BaseWeapon*)new BubbleGun(currentScene, false));
 	}
 	if(keystate[SDL_SCANCODE_5]){
-		currentWeapon = (BaseWeapon*)new Cannon(currentScene, false);
+		setWeapon(currentWeapon = (BaseWeapon*)new Cannon(currentScene, false));
 	}
 	if(keystate[SDL_SCANCODE_KP_PLUS]){
 		currentScene->spawner->currentWave = 4;
 	}
 	if(keystate[SDL_SCANCODE_0]){
-		currentWeapon = new BaseWeapon(currentScene, false);
+		setWeapon(currentWeapon = new BaseWeapon(currentScene, false));
 	}
 
 	//Shooting

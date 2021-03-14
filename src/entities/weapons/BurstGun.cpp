@@ -3,6 +3,7 @@
 
 BurstGun::BurstGun(Scene* scene, bool enemy) : BaseWeapon(scene, enemy){
     shootSpeed = 300;
+    fireRate = 1;
     weaponName = "Burst Gun";
 }
 

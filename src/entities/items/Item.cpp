@@ -11,8 +11,47 @@ Item::Item(Scene* scene, int x, int y) : Sprite(AssetLoader::tilesheet, AssetLoa
 Item::~Item() {
 }
 
+void Item::update(double delta) {
+
+  if(shouldSpawn) {
+    auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY | ENEMY);
+    this->setBody(body);
+
+    // Get random direction
+    double xDir = (rand() % 11 + (-5)) / 10.0;
+    double yDir = (rand() % 11 + (-5)) / 10.0;
+
+    auto minValue = .12;
+
+    if(xDir < 0) {
+      xDir = -minValue;
+    }
+
+    if(yDir < 0) {
+      yDir = -minValue;
+    }
+
+    if(xDir > 0) {
+      xDir = minValue;
+    }
+
+    if(yDir > 0) {
+      yDir = minValue;
+    }
+
+    body->ApplyLinearImpulseToCenter(b2Vec2(xDir, yDir), true);
+    timeAlive = 0;
+    shouldSpawn = false;
+  }
+
+  if(body != nullptr) {
+    timeAlive += delta;
+
+    body->SetLinearDamping(5);
+  }
+}
+
 void Item::spawn() {
-  auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY);
-  this->setBody(body);
+  shouldSpawn = true;
   currentScene->createObject(this);
 }

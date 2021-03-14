@@ -14,7 +14,11 @@ class Item : public Sprite {
 		~Item();
 		virtual void activate(Player* player) = 0;
 		void spawn();
+		void update(double delta);
+		double timeAlive = 0;
+		double pickupCooldown = .25;
 	protected:
+		bool shouldSpawn = false;
 		Scene* currentScene;
 };
 

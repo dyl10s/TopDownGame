@@ -43,7 +43,7 @@ void Chest::initialSetup(Scene* scene) {
   opened = false;
   empty = false;
   currentScene = scene;
-  auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY | FRIENDLYBULLET);
+  auto body = currentScene->getCollision()->addObject(this, ENEMY, FRIENDLY | FRIENDLYBULLET | ENEMY);
   this->setBody(body);
 }
 
@@ -87,7 +87,7 @@ void Chest::update(double delta) {
     setAnimationFrame(2);
     empty = true;
   }
-  body->SetLinearDamping(2);
+  body->SetLinearDamping(5);
 }
 
 void Chest::spawnItem() {
