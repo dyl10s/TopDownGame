@@ -14,7 +14,7 @@ void Sound::playBGMusic(const char* filename) {
     Mix_Music* backgroundSound = Mix_LoadMUS(filename);
 	if( backgroundSound == NULL )
     {
-        printf( "Failed to load background music: %s\n", Mix_GetError() );
+        SDL_Log( "Failed to load background music: %s\n", Mix_GetError() );
     }
     Mix_PlayMusic(backgroundSound, -1);
 }

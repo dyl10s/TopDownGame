@@ -43,7 +43,7 @@ int main(int argc, char** argv){
 		}
 	}
 
-	StaticEntity* Door;
+	StaticEntity* Door = nullptr;
 
 	// Create the walls
 	for(int i = 1; i < 31; i++){
@@ -114,4 +114,6 @@ int main(int argc, char** argv){
 	engine.run();
 
 	delete loader;
+
+	return 1;
 }

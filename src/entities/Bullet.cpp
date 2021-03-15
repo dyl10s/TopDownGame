@@ -5,8 +5,8 @@
 Bullet::Bullet(Scene* scene, int x, int y, double xVel, double yVel, int damage, bool enemy, double scale) : 
     Sprite({
         enemy ?
-        Sprite{AssetLoader::tilesheet, AssetLoader::enemyBullet, 4, .2, 0, 10 * scale, 10 * scale} :
-        Sprite{AssetLoader::tilesheet, AssetLoader::friendlyBullet, 4, .2, 0, 10 * scale, 10 * scale}
+        Sprite{AssetLoader::tilesheet, AssetLoader::enemyBullet, 4, .2, 0, static_cast<int>(10 * scale), static_cast<int>(10 * scale)} :
+        Sprite{AssetLoader::tilesheet, AssetLoader::friendlyBullet, 4, .2, 0, static_cast<int>(10 * scale), static_cast<int>(10 * scale)}
     }) {
     currentScene = scene;
     position.setX(x);

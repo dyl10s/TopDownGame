@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props" Condition="Exists('packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props')" />
+  <Import Project="packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props" Condition="Exists('packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{a5ab3f7f-bda8-440b-9472-b29b52d59904}</ProjectGuid>
+    <RootNamespace>TopDownGame</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\dylan\source\repos\TopDownGame\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\engine\AssetLoader.cpp" />
+    <ClCompile Include="src\engine\Collision.cpp" />
+    <ClCompile Include="src\engine\ContactListener.cpp" />
+    <ClCompile Include="src\engine\Engine.cpp" />
+    <ClCompile Include="src\engine\Interfaces.cpp" />
+    <ClCompile Include="src\engine\Scene.cpp" />
+    <ClCompile Include="src\engine\Sound.cpp" />
+    <ClCompile Include="src\engine\Sprite.cpp" />
+    <ClCompile Include="src\engine\Utility.cpp" />
+    <ClCompile Include="src\entities\Bullet.cpp" />
+    <ClCompile Include="src\entities\Chest.cpp" />
+    <ClCompile Include="src\entities\enemies\BaseEnemy.cpp" />
+    <ClCompile Include="src\entities\enemies\BossEnemy.cpp" />
+    <ClCompile Include="src\entities\enemies\BrownSlime.cpp" />
+    <ClCompile Include="src\entities\enemies\BurstEnemy.cpp" />
+    <ClCompile Include="src\entities\enemies\GreenSlime.cpp" />
+    <ClCompile Include="src\entities\enemies\SpiralEnemy.cpp" />
+    <ClCompile Include="src\entities\items\HealthItem.cpp" />
+    <ClCompile Include="src\entities\items\HeartItem.cpp" />
+    <ClCompile Include="src\entities\items\Item.cpp" />
+    <ClCompile Include="src\entities\items\WeaponItem.cpp" />
+    <ClCompile Include="src\entities\Player.cpp" />
+    <ClCompile Include="src\entities\Spawner.cpp" />
+    <ClCompile Include="src\entities\StaticEntity.cpp" />
+    <ClCompile Include="src\entities\Timer.cpp" />
+    <ClCompile Include="src\entities\weapons\BaseWeapon.cpp" />
+    <ClCompile Include="src\entities\weapons\BubbleGun.cpp" />
+    <ClCompile Include="src\entities\weapons\BurstGun.cpp" />
+    <ClCompile Include="src\entities\weapons\Cannon.cpp" />
+    <ClCompile Include="src\entities\weapons\MachineGun.cpp" />
+    <ClCompile Include="src\entities\weapons\MultiDirectionGun.cpp" />
+    <ClCompile Include="src\entities\weapons\NoobEnemyGun.cpp" />
+    <ClCompile Include="src\entities\weapons\TrippleShotGun.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\engine\AssetLoader.hpp" />
+    <ClInclude Include="include\engine\Collision.hpp" />
+    <ClInclude Include="include\engine\ContactListener.hpp" />
+    <ClInclude Include="include\engine\Engine.hpp" />
+    <ClInclude Include="include\engine\Interfaces.hpp" />
+    <ClInclude Include="include\engine\Properties.hpp" />
+    <ClInclude Include="include\engine\Scene.hpp" />
+    <ClInclude Include="include\engine\Sound.hpp" />
+    <ClInclude Include="include\engine\Sprite.hpp" />
+    <ClInclude Include="include\engine\Utility.hpp" />
+    <ClInclude Include="include\entities\Bullet.hpp" />
+    <ClInclude Include="include\entities\Chest.hpp" />
+    <ClInclude Include="include\entities\enemies\BaseEnemy.hpp" />
+    <ClInclude Include="include\entities\enemies\BossEnemy.hpp" />
+    <ClInclude Include="include\entities\enemies\BrownSlime.hpp" />
+    <ClInclude Include="include\entities\enemies\BurstEnemy.hpp" />
+    <ClInclude Include="include\entities\enemies\GreenSlime.hpp" />
+    <ClInclude Include="include\entities\enemies\SpiralEnemy.hpp" />
+    <ClInclude Include="include\entities\items\HealthItem.hpp" />
+    <ClInclude Include="include\entities\items\HeartItem.hpp" />
+    <ClInclude Include="include\entities\items\Item.hpp" />
+    <ClInclude Include="include\entities\items\WeaponItem.hpp" />
+    <ClInclude Include="include\entities\Player.hpp" />
+    <ClInclude Include="include\entities\Spawner.hpp" />
+    <ClInclude Include="include\entities\StaticEntity.hpp" />
+    <ClInclude Include="include\entities\Timer.hpp" />
+    <ClInclude Include="include\entities\weapons\BaseWeapon.hpp" />
+    <ClInclude Include="include\entities\weapons\BubbleGun.hpp" />
+    <ClInclude Include="include\entities\weapons\BurstGun.hpp" />
+    <ClInclude Include="include\entities\weapons\Cannon.hpp" />
+    <ClInclude Include="include\entities\weapons\MachineGun.hpp" />
+    <ClInclude Include="include\entities\weapons\MultiDirectionGun.hpp" />
+    <ClInclude Include="include\entities\weapons\NoobEnemyGun.hpp" />
+    <ClInclude Include="include\entities\weapons\TrippleShotGun.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\8bitBackground.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\stick.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\tilemap.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\sdl2.nuget.redist.2.0.14\build\native\sdl2.nuget.redist.targets" Condition="Exists('packages\sdl2.nuget.redist.2.0.14\build\native\sdl2.nuget.redist.targets')" />
+    <Import Project="packages\sdl2.nuget.2.0.14\build\native\sdl2.nuget.targets" Condition="Exists('packages\sdl2.nuget.2.0.14\build\native\sdl2.nuget.targets')" />
+    <Import Project="packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets" Condition="Exists('packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets')" />
+    <Import Project="packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets" Condition="Exists('packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets')" />
+    <Import Project="packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets" Condition="Exists('packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets')" />
+    <Import Project="packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets" Condition="Exists('packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets')" />
+    <Import Project="packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets" Condition="Exists('packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets')" />
+    <Import Project="packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets" Condition="Exists('packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Box2D-cpp.redist.2.4.1.5\build\native\Box2D-cpp.redist.props'))" />
+    <Error Condition="!Exists('packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Box2D-cpp.2.4.1.5\build\native\Box2D-cpp.props'))" />
+    <Error Condition="!Exists('packages\sdl2.nuget.redist.2.0.14\build\native\sdl2.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2.nuget.redist.2.0.14\build\native\sdl2.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2.nuget.2.0.14\build\native\sdl2.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2.nuget.2.0.14\build\native\sdl2.nuget.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_mixer.nuget.redist.2.0.4\build\native\sdl2_mixer.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_mixer.nuget.2.0.4\build\native\sdl2_mixer.nuget.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_image.nuget.redist.2.0.5\build\native\sdl2_image.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_image.nuget.2.0.5\build\native\sdl2_image.nuget.targets'))" />
+  </Target>
+</Project>

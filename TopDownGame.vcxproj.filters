@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\engine">
+      <UniqueIdentifier>{cd285d8f-6383-41f6-8547-a7d82d358ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities">
+      <UniqueIdentifier>{6275bc3e-d80f-431b-ad53-6b3b11498fe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities\weapons">
+      <UniqueIdentifier>{73e0d5f3-112e-4864-ae87-8b3e2e8f6117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities\items">
+      <UniqueIdentifier>{c206563d-f03e-4d84-b74d-477a31d91b56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities\enemies">
+      <UniqueIdentifier>{3d40c44a-bac3-4a86-a747-206c012cdae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine">
+      <UniqueIdentifier>{ce016e16-d3ed-438c-bb10-a6b7438d8fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities">
+      <UniqueIdentifier>{b37d689e-972b-47c4-b742-10d6fab3ebdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities\enemies">
+      <UniqueIdentifier>{bb99efe0-17ec-4843-a129-e3e71b7d4402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities\items">
+      <UniqueIdentifier>{577d0ce6-4df8-4f3d-9fcf-8a37cd7f5d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities\weapons">
+      <UniqueIdentifier>{ee47529f-2adc-4bf8-a696-321e860695b9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\Bullet.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\Chest.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\Player.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\Spawner.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\StaticEntity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\Timer.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\BaseWeapon.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\BubbleGun.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\BurstGun.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\Cannon.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\MachineGun.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\MultiDirectionGun.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\NoobEnemyGun.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\weapons\TrippleShotGun.cpp">
+      <Filter>Source Files\entities\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\items\HealthItem.cpp">
+      <Filter>Source Files\entities\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\items\HeartItem.cpp">
+      <Filter>Source Files\entities\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\items\Item.cpp">
+      <Filter>Source Files\entities\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\items\WeaponItem.cpp">
+      <Filter>Source Files\entities\items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\enemies\BaseEnemy.cpp">
+      <Filter>Source Files\entities\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\enemies\BossEnemy.cpp">
+      <Filter>Source Files\entities\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\enemies\BrownSlime.cpp">
+      <Filter>Source Files\entities\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\enemies\BurstEnemy.cpp">
+      <Filter>Source Files\entities\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\enemies\GreenSlime.cpp">
+      <Filter>Source Files\entities\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\enemies\SpiralEnemy.cpp">
+      <Filter>Source Files\entities\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\AssetLoader.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Collision.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\ContactListener.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Engine.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Interfaces.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Scene.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Sound.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Sprite.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Utility.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\engine\AssetLoader.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Collision.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\ContactListener.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Engine.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Interfaces.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Properties.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Scene.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Sound.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Sprite.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Utility.hpp">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\Bullet.hpp">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\Chest.hpp">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\Player.hpp">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\Spawner.hpp">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\StaticEntity.hpp">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\Timer.hpp">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\BaseWeapon.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\BubbleGun.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\BurstGun.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\Cannon.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\MachineGun.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\MultiDirectionGun.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\NoobEnemyGun.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\weapons\TrippleShotGun.hpp">
+      <Filter>Header Files\entities\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\items\HealthItem.hpp">
+      <Filter>Header Files\entities\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\items\HeartItem.hpp">
+      <Filter>Header Files\entities\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\items\Item.hpp">
+      <Filter>Header Files\entities\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\items\WeaponItem.hpp">
+      <Filter>Header Files\entities\items</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\enemies\BaseEnemy.hpp">
+      <Filter>Header Files\entities\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\enemies\BossEnemy.hpp">
+      <Filter>Header Files\entities\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\enemies\BrownSlime.hpp">
+      <Filter>Header Files\entities\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\enemies\BurstEnemy.hpp">
+      <Filter>Header Files\entities\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\enemies\GreenSlime.hpp">
+      <Filter>Header Files\entities\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\enemies\SpiralEnemy.hpp">
+      <Filter>Header Files\entities\enemies</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\8bitBackground.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\stick.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\tilemap.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

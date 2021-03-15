@@ -53,21 +53,21 @@ Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect* sourceRect, int layer, int wi
 
 	texture =  spriteSheet;
 
-	rect->x = 0;
-	rect->y = 0;
+	rect.x = 0;
+	rect.y = 0;
 
 	if(width == -1){
-		rect->w = surface->w;
+		rect.w = surface->w;
 		width = surface->w;
 	}else{
-		rect->w = width;
+		rect.w = width;
 	}
 
 	if(height == -1){
-		rect->h = surface->h;
+		rect.h = surface->h;
 		height = surface->h;
 	}else{
-		rect->h = height;
+		rect.h = height;
 	}
 }
 
@@ -86,21 +86,21 @@ Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect** sourceRects, int frames, flo
 
 	texture =  spriteSheet;
 
-	rect->x = 0;
-	rect->y = 0;
+	rect.x = 0;
+	rect.y = 0;
 
 	if(width == -1){
-		rect->w = sourceRects[0]->w;
+		rect.w = sourceRects[0]->w;
 		width = sourceRects[0]->w;
 	}else{
-		rect->w = width;
+		rect.w = width;
 	}
 
 	if(height == -1){
-		rect->h = sourceRects[0]->h;
+		rect.h = sourceRects[0]->h;
 		height = sourceRects[0]->h;
 	}else{
-		rect->h = height;
+		rect.h = height;
 	}
 }
 
@@ -159,27 +159,24 @@ void Sprite::createTexture(SDL_Surface* surface){
 		SDL_Log("Unable to create texture. %s", SDL_GetError());
 	}
 
-	rect->x = 0;
-	rect->y = 0;
+	rect.x = 0;
+	rect.y = 0;
 
 	if(width == -1){
-		rect->w = surface->w;
+		rect.w = surface->w;
 	}else{
-		rect->w = width;
+		rect.w = width;
 	}
 
 	if(height == -1){
-		rect->h = surface->h;
+		rect.h = surface->h;
 	}else{
-		rect->h = height;
+		rect.h = height;
 	}
 }
 
 Sprite::~Sprite(){
 	
-	// remove rect from memory
-  	delete rect;
-
 	if(font != nullptr && font != NULL){
 		TTF_CloseFont(font);
 	}
@@ -211,8 +208,8 @@ void Sprite::draw(){
 	dst.x = floor(position.getX());
 	dst.y =  floor(position.getY());
 	
-	dst.w = rect->w;
-	dst.h = rect->h;
+	dst.w = rect.w;
+	dst.h = rect.h;
 
 	// we can pass the address of dst to sdl_rendercopy so that it knows where to find it
 	if(sourceRects != nullptr){

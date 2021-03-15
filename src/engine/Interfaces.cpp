@@ -2,5 +2,5 @@
 #include <SDL2/SDL.h>
 
 Drawable::Drawable(){
-	rect = new SDL_Rect();
+	rect = SDL_Rect();
 }

@@ -23,7 +23,7 @@ class Drawable {
 		virtual ~Drawable() = default;
 
 	protected:
-		SDL_Rect* rect;
+		SDL_Rect rect;
 		SDL_Surface* surface;
 		SDL_Texture* texture;
 };

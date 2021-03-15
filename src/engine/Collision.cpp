@@ -21,8 +21,8 @@ void Collision::update(double delta){
 	world->Step(1.0 / 59.0, 1.0, 1.0);
 	for(auto it = objects.begin(); it != objects.end(); ++it){
 		b2Vec2 position = (*it).second->GetPosition();
-		(*it).first->position.setX((position.x * METERSTOPIXELS) - ((*it).first->rect->w / 2.0));
-		(*it).first->position.setY((position.y * METERSTOPIXELS) - ((*it).first->rect->h / 2.0));
+		(*it).first->position.setX((position.x * METERSTOPIXELS) - ((*it).first->rect.w / 2.0));
+		(*it).first->position.setY((position.y * METERSTOPIXELS) - ((*it).first->rect.h / 2.0));
 	}
 }
 
@@ -59,7 +59,7 @@ b2Body* Collision::addStatic(Sprite* object, uint16 category, uint16 collideWith
 	body->GetUserData().pointer = (uintptr_t)object;
 
 	b2PolygonShape box;
-	box.SetAsBox((object->rect->w / 2.0) / METERSTOPIXELS, (object->rect->h / 2.0) / METERSTOPIXELS);
+	box.SetAsBox((object->rect.w / 2.0) / METERSTOPIXELS, (object->rect.h / 2.0) / METERSTOPIXELS);
 
 	b2FixtureDef fixture;
 	fixture.filter.categoryBits = category;
@@ -86,7 +86,7 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	b2Body* body = world->CreateBody(&bodyDef);
 	
 	b2PolygonShape box;
-	box.SetAsBox((object->rect->w / 2.0) / METERSTOPIXELS, (object->rect->h / 2.0) / METERSTOPIXELS);
+	box.SetAsBox((object->rect.w / 2.0) / METERSTOPIXELS, (object->rect.h / 2.0) / METERSTOPIXELS);
 
 	b2FixtureDef fixture;
 	fixture.filter.categoryBits = category;
