@@ -38,14 +38,14 @@ void BaseEnemy::standardUpdate(double delta){
 	body->SetLinearDamping(friction);
 
 	if(health <= 0){
-		int dropHeart = rand() % 15;
+		int dropHeart = rand() % 10;
 		if(dropHeart == 5) {
 			auto drop = new HealthItem(currentScene, position.getX() + width / 2, position.getY() + health / 2);
 			((Item*)drop)->spawn();
 		}
 		else
 		{
-			int dropHPIncrease = rand() % 30;
+			int dropHPIncrease = rand() % 20;
 			if(dropHPIncrease == 5) {
 				auto drop = new HeartItem(currentScene, position.getX() + width / 2, position.getY() + health / 2);
 				((Item*)drop)->spawn();
