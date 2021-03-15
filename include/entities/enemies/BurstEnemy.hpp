@@ -1,5 +1,5 @@
-#ifndef			__HPP__WALLRIDEENEMY__
-#define			__HPP__WALLRIDEENEMY__
+#ifndef			__HPP__BurstEnemy__
+#define			__HPP__BurstEnemy__
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

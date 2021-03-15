@@ -81,6 +81,7 @@ b2Body* Collision::addObject(Sprite* object, uint16 category, uint16 collideWith
 	bodyDef.position.Set(object->position.getX() / METERSTOPIXELS, object->position.getY() / METERSTOPIXELS);
 	bodyDef.userData = b2BodyUserData();
 	bodyDef.userData.pointer = (uintptr_t)object;
+	bodyDef.bullet = true;
 
 	b2Body* body = world->CreateBody(&bodyDef);
 	

@@ -2,6 +2,8 @@
 #include "engine/AssetLoader.hpp"
 #include "entities/enemies/BaseEnemy.hpp"
 #include "entities/weapons/NoobEnemyGun.hpp"
+#include "entities/items/HealthItem.hpp"
+#include "entities/items/HeartItem.hpp"
 #include "entities/Bullet.hpp"
 #include <SDL2/SDL.h>
 #include <stdlib.h>
@@ -36,6 +38,21 @@ void BaseEnemy::standardUpdate(double delta){
 	body->SetLinearDamping(friction);
 
 	if(health <= 0){
+		int dropHeart = rand() % 15;
+		if(dropHeart == 5) {
+			auto drop = new HealthItem(currentScene, position.getX() + width / 2, position.getY() + health / 2);
+			((Item*)drop)->spawn();
+		}
+		else
+		{
+			int dropHPIncrease = rand() % 30;
+			if(dropHPIncrease == 5) {
+				auto drop = new HeartItem(currentScene, position.getX() + width / 2, position.getY() + health / 2);
+				((Item*)drop)->spawn();
+			}
+		}
+
+		
 		currentScene->removeObject(this);
 	}
 }

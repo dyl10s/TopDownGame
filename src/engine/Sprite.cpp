@@ -77,7 +77,7 @@ Sprite::Sprite(SDL_Texture* spriteSheet, SDL_Rect** sourceRects, int frames, flo
 	this->height = height;
 	this->body = body;
 	this->sourceRects = sourceRects;
-	this->animationFrameCount = frames - 1;
+	this->animationFrameCount = frames;
 	this->animationSpeed = animationSpeed;
 
 	// initialize some of our pointers to null, just to be safe

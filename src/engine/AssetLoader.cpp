@@ -21,6 +21,7 @@ SDL_Rect** AssetLoader::burstEnemy;
 SDL_Rect** AssetLoader::spiralEnemy;
 SDL_Rect** AssetLoader::brownSlime;
 SDL_Rect** AssetLoader::greenSlime;
+SDL_Rect** AssetLoader::bossEnemy;
 
 // Static
 SDL_Rect AssetLoader::topWall;
@@ -112,6 +113,13 @@ AssetLoader::AssetLoader(std::string tileSheetPath){
     greenSlime = new SDL_Rect*[2] {
         new SDL_Rect({449, 114, 15, 14}),
         new SDL_Rect({432, 114, 15, 14})
+    };
+
+    bossEnemy = new SDL_Rect*[4] {
+        new SDL_Rect({21, 369, 23, 31}),
+        new SDL_Rect({52, 369, 23, 31}),
+        new SDL_Rect({84, 369, 23, 31}),
+        new SDL_Rect({115, 369, 23, 31}),
     };
 
     // Static

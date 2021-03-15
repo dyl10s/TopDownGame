@@ -6,6 +6,7 @@
 #include "entities/enemies/SpiralEnemy.hpp"
 #include "entities/enemies/GreenSlime.hpp"
 #include "entities/enemies/BrownSlime.hpp"
+#include "entities/enemies/BossEnemy.hpp"
 #include "entities/Chest.hpp"
 #include "entities/items/Item.hpp"
 
@@ -167,6 +168,12 @@ void Spawner::spawnEnemies() {
             currentScene->createObject(enemy);
             waveSprites.push_back(enemy);
         }
+    }
+    else if(currentWave <= 21) // boss
+    {
+        auto enemy = new BossEnemy(currentScene, 500, 200);
+        currentScene->createObject(enemy);
+        waveSprites.push_back(enemy);
     }
     else 
     {

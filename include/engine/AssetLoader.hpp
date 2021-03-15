@@ -29,6 +29,7 @@ class AssetLoader {
                 static SDL_Rect** spiralEnemy;
                 static SDL_Rect** brownSlime;
                 static SDL_Rect** greenSlime;
+                static SDL_Rect** bossEnemy;
 
                 // Static
                 static SDL_Rect topWall;

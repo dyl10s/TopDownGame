@@ -109,7 +109,7 @@ void Player::update(double delta){
 		setWeapon(currentWeapon = (BaseWeapon*)new Cannon(currentScene, false));
 	}
 	if(keystate[SDL_SCANCODE_KP_PLUS]){
-		currentScene->spawner->currentWave = 4;
+		currentScene->spawner->currentWave = 20;
 	}
 	if(keystate[SDL_SCANCODE_0]){
 		setWeapon(currentWeapon = new BaseWeapon(currentScene, false));
