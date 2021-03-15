@@ -108,6 +108,13 @@ void Engine::run(){
 		}
 		currentScene->createDrawables.clear();
 
+		// create any new game objects
+		for(std::vector<DUGameObject*>::iterator it = currentScene->createdObjects.begin(); it != currentScene->createdObjects.end(); ++it){
+			currentScene->updateables.push_back((*it));
+			currentScene->drawables.push_back((*it));
+		}
+		currentScene->createdObjects.clear();
+
 		// destroy objects
 		for(std::vector<DUGameObject*>::iterator it = currentScene->removedObjects.begin(); it != currentScene->removedObjects.end(); ++it){
 			auto deletedUpdatable = currentScene->updateables.erase(
@@ -121,13 +128,6 @@ void Engine::run(){
 			delete (*it);
 		}
 		currentScene->removedObjects.clear();
-
-		// create any new game objects
-		for(std::vector<DUGameObject*>::iterator it = currentScene->createdObjects.begin(); it != currentScene->createdObjects.end(); ++it){
-			currentScene->updateables.push_back((*it));
-			currentScene->drawables.push_back((*it));
-		}
-		currentScene->createdObjects.clear();
 
 		// create any new updatables
 		for(std::vector<Updateable*>::iterator it = currentScene->createUpdatables.begin(); it != currentScene->createUpdatables.end(); ++it){
